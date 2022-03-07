@@ -416,7 +416,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 789006662}
+  - component: {fileID: 789006665}
   - component: {fileID: 789006663}
+  - component: {fileID: 789006664}
+  - component: {fileID: 789006666}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -458,6 +461,48 @@ MonoBehaviour:
   _cameraTransform: {fileID: 963194228}
   _aimModCameraTransfrom: {fileID: 1876484406}
   _normalModCameraTransfrom: {fileID: 1124055154}
+--- !u!114 &789006664
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 789006661}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1cf44978056985a408648e51f696483d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  moveSpeed: 5
+--- !u!54 &789006665
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 789006661}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 80
+  m_CollisionDetection: 0
+--- !u!114 &789006666
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 789006661}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2dcc0e027393b0047aeb6473b66f675f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _rotateSpeed: 50
 --- !u!1 &963194225
 GameObject:
   m_ObjectHideFlags: 0
