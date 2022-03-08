@@ -28,7 +28,7 @@ public class PlayerCamera : MonoBehaviour
 
     void Start()
     {
-        _cameraTransform = Camera.main.transform;
+        //_cameraTransform = Camera.main.transform;
     }
 
     void Update()

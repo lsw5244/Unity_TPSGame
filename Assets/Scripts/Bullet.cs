@@ -6,6 +6,9 @@ public class Bullet : MonoBehaviour
 {
     private void OnTriggerEnter(Collider other)
     {
-        this.gameObject.SetActive(false);
+        if(other.CompareTag("Player") == false)
+        {
+            this.gameObject.SetActive(false);
+        }
     }
 }

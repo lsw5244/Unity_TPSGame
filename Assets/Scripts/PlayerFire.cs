@@ -5,7 +5,7 @@ using UnityEngine;
 public class PlayerFire : MonoBehaviour
 {
     [SerializeField]
-    private Transform _fireTransfrom;
+    private Transform _fireTransform;
 
     [SerializeField]
     private BulletManager _bulletManager;
@@ -18,6 +18,12 @@ public class PlayerFire : MonoBehaviour
 
     private bool _canFire;
 
+    [SerializeField]
+    private Transform _cameraAimModPos;
+
+    [SerializeField]
+    private float _fireRayDistance;
+
     void Start()
     {
         _canFire = true;
@@ -29,7 +35,43 @@ public class PlayerFire : MonoBehaviour
         {
             StartCoroutine("FireDelay");
 
-            BulletFire();
+            if(Input.GetMouseButton(1)) // 조준 모드일 때
+            {
+                RaycastHit hit;
+
+                Vector3 hitPosition = _cameraAimModPos.position + _cameraAimModPos.forward * _fireRayDistance;
+                Vector3 hitDirection = (hitPosition - _fireTransform.position).normalized;
+
+                if (Physics.Raycast(_cameraAimModPos.position, _cameraAimModPos.forward, out hit, _fireRayDistance))
+                {
+                    // 레이에 맞았을 때
+                    hitDirection = (hit.point - _fireTransform.position).normalized;
+
+                    GameObject bullet = _bulletManager.GetBullet();
+
+                    bullet.transform.position = _fireTransform.position;
+                    bullet.transform.rotation = transform.rotation;
+                    bullet.SetActive(true);
+                    bullet.GetComponent<Rigidbody>().velocity = Vector3.zero;
+                    bullet.GetComponent<Rigidbody>().AddForce(hitDirection * _firePower);
+                }
+                else
+                {
+                    // 레이에 안맞았을 때 ( 레이를 쏜 방향으로 날리기 )
+                    GameObject bullet = _bulletManager.GetBullet();
+
+                    bullet.transform.position = _fireTransform.position;
+                    bullet.transform.rotation = transform.rotation;
+                    bullet.SetActive(true);
+                    bullet.GetComponent<Rigidbody>().velocity = Vector3.zero;
+                    bullet.GetComponent<Rigidbody>().AddForce(hitDirection * _firePower);
+                }
+            }
+            else
+            {
+                BulletFire();
+            }
+
         }
     }
 
@@ -39,7 +81,7 @@ public class PlayerFire : MonoBehaviour
 
         if (bullet != null)
         {
-            bullet.transform.position = _fireTransfrom.position;
+            bullet.transform.position = _fireTransform.position;
             bullet.transform.rotation = transform.rotation;
             bullet.SetActive(true);
             bullet.GetComponent<Rigidbody>().velocity = Vector3.zero;
