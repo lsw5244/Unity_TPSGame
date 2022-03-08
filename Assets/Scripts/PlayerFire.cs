@@ -29,16 +29,21 @@ public class PlayerFire : MonoBehaviour
         {
             StartCoroutine("FireDelay");
 
-            GameObject bullet = _bulletManager.GetBullet();
+            BulletFire();
+        }
+    }
 
-            if(bullet != null)
-            {
-                bullet.transform.position = _fireTransfrom.position;
-                bullet.transform.rotation = transform.rotation;
-                bullet.SetActive(true);
-                bullet.GetComponent<Rigidbody>().velocity = Vector3.zero;
-                bullet.GetComponent<Rigidbody>().AddForce(bullet.transform.forward * _firePower);
-            }
+    void BulletFire()
+    {
+        GameObject bullet = _bulletManager.GetBullet();
+
+        if (bullet != null)
+        {
+            bullet.transform.position = _fireTransfrom.position;
+            bullet.transform.rotation = transform.rotation;
+            bullet.SetActive(true);
+            bullet.GetComponent<Rigidbody>().velocity = Vector3.zero;
+            bullet.GetComponent<Rigidbody>().AddForce(bullet.transform.forward * _firePower);
         }
     }
 
