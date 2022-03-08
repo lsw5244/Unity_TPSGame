@@ -6,23 +6,20 @@ public class PlayerFire : MonoBehaviour
 {
     [SerializeField]
     private Transform _fireTransform;
+    [SerializeField]
+    private Transform _aimModCameraTransfrom;
 
     [SerializeField]
     private BulletManager _bulletManager;
 
     [SerializeField]
     private float _firePower;
-
     [SerializeField]
     private float _fireDelay;
-
-    private bool _canFire;
-
-    [SerializeField]
-    private Transform _cameraAimModPos;
-
     [SerializeField]
     private float _fireRayDistance;
+    
+    private bool _canFire;
 
     void Start()
     {
@@ -33,49 +30,37 @@ public class PlayerFire : MonoBehaviour
     {
         if(Input.GetMouseButton(0) && _canFire == true)
         {
-            StartCoroutine("FireDelay");
+            StartCoroutine("StartDelay");
 
             if(Input.GetMouseButton(1)) // 조준 모드일 때
             {
                 RaycastHit hit;
 
-                Vector3 hitPosition = _cameraAimModPos.position + _cameraAimModPos.forward * _fireRayDistance;
+                Vector3 hitPosition = _aimModCameraTransfrom.position + _aimModCameraTransfrom.forward * _fireRayDistance;
                 Vector3 hitDirection = (hitPosition - _fireTransform.position).normalized;
 
-                if (Physics.Raycast(_cameraAimModPos.position, _cameraAimModPos.forward, out hit, _fireRayDistance))
+                if (Physics.Raycast(_aimModCameraTransfrom.position, _aimModCameraTransfrom.forward, out hit, _fireRayDistance))
                 {
-                    // 레이에 맞았을 때
+                    // 레이에 맞았을 때 ( 레이에 닿은 방향으로 날리기)
                     hitDirection = (hit.point - _fireTransform.position).normalized;
 
-                    GameObject bullet = _bulletManager.GetBullet();
-
-                    bullet.transform.position = _fireTransform.position;
-                    bullet.transform.rotation = transform.rotation;
-                    bullet.SetActive(true);
-                    bullet.GetComponent<Rigidbody>().velocity = Vector3.zero;
-                    bullet.GetComponent<Rigidbody>().AddForce(hitDirection * _firePower);
+                    ShootBullet(hitDirection);
                 }
                 else
                 {
                     // 레이에 안맞았을 때 ( 레이를 쏜 방향으로 날리기 )
-                    GameObject bullet = _bulletManager.GetBullet();
-
-                    bullet.transform.position = _fireTransform.position;
-                    bullet.transform.rotation = transform.rotation;
-                    bullet.SetActive(true);
-                    bullet.GetComponent<Rigidbody>().velocity = Vector3.zero;
-                    bullet.GetComponent<Rigidbody>().AddForce(hitDirection * _firePower);
+                    ShootBullet(hitDirection);
                 }
             }
             else
             {
-                BulletFire();
+                ShootBullet(_fireTransform.forward);
             }
 
         }
     }
 
-    void BulletFire()
+    void ShootBullet(Vector3 shootDistance)
     {
         GameObject bullet = _bulletManager.GetBullet();
 
@@ -84,12 +69,13 @@ public class PlayerFire : MonoBehaviour
             bullet.transform.position = _fireTransform.position;
             bullet.transform.rotation = transform.rotation;
             bullet.SetActive(true);
+
             bullet.GetComponent<Rigidbody>().velocity = Vector3.zero;
-            bullet.GetComponent<Rigidbody>().AddForce(bullet.transform.forward * _firePower);
+            bullet.GetComponent<Rigidbody>().AddForce(shootDistance * _firePower);
         }
     }
 
-    IEnumerator FireDelay()
+    IEnumerator StartDelay()
     {
         _canFire = false;
         yield return new WaitForSeconds(_fireDelay);

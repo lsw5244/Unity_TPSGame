@@ -824,12 +824,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _fireTransform: {fileID: 1439330913}
+  _aimModCameraTransfrom: {fileID: 1876484406}
   _bulletManager: {fileID: 751079718}
   _firePower: 1000
   _fireDelay: 0.3
-  _cameraAimModPos: {fileID: 1876484406}
   _fireRayDistance: 10
-  hitPoint: {fileID: 7479434534752603984, guid: 93dea26b0037d5a439d993d6581004ca, type: 3}
 --- !u!1 &963194225
 GameObject:
   m_ObjectHideFlags: 0
