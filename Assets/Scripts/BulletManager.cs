@@ -21,7 +21,7 @@ public class BulletManager : MonoBehaviour
     {
         for(int i = 0; i < 10; ++i)
         {
-            if(_bulletPool[i].activeSelf == true)
+            if(_bulletPool[i].activeSelf == false)
             {
                 return _bulletPool[i];
             }
