@@ -1,20 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerCamera : MonoBehaviour
 {
-
-    //public Transform _cameraArmTransform;
-
-    //public float _cameraMoveSpeed = 200f;
-
-    //public Transform _cameraTransform;
-
-    //public Transform _aimModCameraTransfrom;
-
-    //public Transform _normalModCameraTransfrom;
-
     [SerializeField]
     private Transform _cameraArmTransform;
     [SerializeField]
@@ -25,12 +15,9 @@ public class PlayerCamera : MonoBehaviour
     private Transform _aimModCameraTransfrom;
     [SerializeField]
     private Transform _normalModCameraTransfrom;
-
-    void Start()
-    {
-        //_cameraTransform = Camera.main.transform;
-    }
-
+    [SerializeField]
+    private Image _crosshairImage;  // TODO : UI매니저가 생기면 해당 변수와 기능을 UI매니저에서 하도록 구현하기
+    
     void Update()
     {
         if(Input.GetKey(KeyCode.LeftAlt))
@@ -43,10 +30,14 @@ public class PlayerCamera : MonoBehaviour
         }
         else if(Input.GetMouseButton(1))
         {
-            //_cameraTransform.position = Vector3.zero;
-
             _cameraTransform.position = Vector3.Lerp(_cameraTransform.position, _aimModCameraTransfrom.position, 0.02f);
             _cameraTransform.rotation = Quaternion.Lerp(_cameraTransform.rotation, _aimModCameraTransfrom.rotation, 0.02f);
+
+            _crosshairImage.gameObject.SetActive(true);
+        }
+        else if(Input.GetMouseButtonUp(1))
+        {
+            _crosshairImage.gameObject.SetActive(false);
         }
         else
         {
@@ -56,9 +47,6 @@ public class PlayerCamera : MonoBehaviour
 
     void ResetCameraTransfrom()
     {
-        //_cameraArmTransform.rotation = Quaternion.Lerp(_cameraArmTransform.rotation,
-        //    transform.rotation, 0.1f);
-
         // 카메라Arm 원래 위치로 돌리기
         _cameraArmTransform.localRotation = Quaternion.Lerp(_cameraArmTransform.localRotation,
             Quaternion.identity, 0.02f);
