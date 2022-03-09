@@ -13,6 +13,7 @@ public class BulletManager : MonoBehaviour
         for(int i = 0; i < 10; ++i)
         {
             _bulletPool[i] = Instantiate(_bullet, Vector3.zero, Quaternion.identity);
+            _bulletPool[i].GetComponent<Bullet>().bulletManager = this;
             _bulletPool[i].SetActive(false);
         }
     }
