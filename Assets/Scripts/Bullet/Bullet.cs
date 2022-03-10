@@ -10,15 +10,17 @@ public class Bullet : MonoBehaviour
         set { _bulletManager = value; }
     }
 
-    private void OnCollisionEnter(Collision other)
+    private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.CompareTag("Player") == false)
         {
+            other.gameObject.GetComponent<IMonster>()?.GetDamage(50f);
+                       
             if (_bulletManager.impactAbility != null)
             {
                 _bulletManager.impactAbility(this.gameObject);
             }
-
+            
             this.gameObject.SetActive(false);
         }
     }
