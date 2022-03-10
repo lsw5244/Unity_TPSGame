@@ -10,10 +10,15 @@ public class Bullet : MonoBehaviour
         set { _bulletManager = value; }
     }
 
-    private void OnTriggerEnter(Collider other)
+    private void OnCollisionEnter(Collision other)
     {
-        if(other.CompareTag("Player") == false)
+        if (other.gameObject.CompareTag("Player") == false)
         {
+            if (_bulletManager.impactAbility != null)
+            {
+                _bulletManager.impactAbility(this.gameObject);
+            }
+            //_bulletManager.impactAbility(other.gameObject);
             this.gameObject.SetActive(false);
         }
     }
