@@ -28,7 +28,6 @@ public class DebugMonster : MonoBehaviour, IMonster
 
     public void GetDamage(float damage)
     {
-        Debug.Log("GETDAMAGE!!!");
         currentHp -= damage;
         if(currentHp <= 0f)
         {

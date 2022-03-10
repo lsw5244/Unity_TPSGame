@@ -10,6 +10,7 @@ public class BulletManager : MonoBehaviour
 
     public GameObject explosion;
     public float explosionRange = 2f;
+    public float explosionDamage = 20f;
 
     public delegate void ImpactAbilityDelegate(GameObject bullet);
     public ImpactAbilityDelegate impactAbility;
@@ -23,8 +24,8 @@ public class BulletManager : MonoBehaviour
             _bulletPool[i].SetActive(false);
         }
 
-        impactAbility -= BulletExplosion;
-        impactAbility += BulletExplosion;
+        //impactAbility -= BulletExplosion;
+        //impactAbility += BulletExplosion;
     }
 
     private void Update()
@@ -33,16 +34,26 @@ public class BulletManager : MonoBehaviour
         {
             impactAbility(this.gameObject);
         }
+
+        if (Input.GetKeyDown(KeyCode.F1))
+        {
+            impactAbility -= BulletExplosion;
+            impactAbility += BulletExplosion;
+        }
+        else if (Input.GetKeyDown(KeyCode.F2))
+        {
+            impactAbility -= BulletExplosion;
+        }
     }
 
     void BulletExplosion(GameObject bullet)
     {
         Instantiate(explosion, bullet.gameObject.transform.position, Quaternion.identity);
 
-        Collider[] c = Physics.OverlapSphere(bullet.transform.position, explosionRange, 1 << 6);
-        for(int i = 0; i < c.Length; ++i)
+        Collider[] colliders = Physics.OverlapSphere(bullet.transform.position, explosionRange, 1 << 6);
+        for(int i = 0; i < colliders.Length; ++i)
         {
-            Debug.Log($"{c[i].tag.ToString()}");
+            colliders[i].GetComponent<IMonster>()?.GetDamage(explosionDamage);
         }
     }
 
