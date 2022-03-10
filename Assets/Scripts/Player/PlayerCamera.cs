@@ -20,20 +20,20 @@ public class PlayerCamera : MonoBehaviour
     
     void Update()
     {
-        if(Input.GetKey(KeyCode.LeftAlt))
+        if (Input.GetMouseButton(1)) 
+        {
+            _cameraTransform.position = Vector3.Lerp(_cameraTransform.position, _aimModCameraTransfrom.position, 0.02f);
+            _cameraTransform.rotation = Quaternion.Lerp(_cameraTransform.rotation, _aimModCameraTransfrom.rotation, 0.02f);
+
+            _crosshairImage.gameObject.SetActive(true);
+        }
+        else if (Input.GetKey(KeyCode.LeftAlt))
         {
             _cameraArmTransform.Rotate(/*Input.GetAxis("Mouse Y") * -_cameraMoveSpeed * Time.deltaTime*/0f
                 , Input.GetAxis("Mouse X") * _cameraMoveSpeed * Time.deltaTime
                 , 0f);
 
             _cameraTransform.LookAt(transform.position);
-        }
-        else if(Input.GetMouseButton(1))
-        {
-            _cameraTransform.position = Vector3.Lerp(_cameraTransform.position, _aimModCameraTransfrom.position, 0.02f);
-            _cameraTransform.rotation = Quaternion.Lerp(_cameraTransform.rotation, _aimModCameraTransfrom.rotation, 0.02f);
-
-            _crosshairImage.gameObject.SetActive(true);
         }
         else if(Input.GetMouseButtonUp(1))
         {
