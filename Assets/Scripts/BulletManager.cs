@@ -9,6 +9,7 @@ public class BulletManager : MonoBehaviour
     private GameObject[] _bulletPool = new GameObject[10];
 
     public GameObject explosion;
+    public float explosionRange = 2f;
 
     public delegate void ImpactAbilityDelegate(GameObject bullet);
     public ImpactAbilityDelegate impactAbility;
@@ -22,8 +23,8 @@ public class BulletManager : MonoBehaviour
             _bulletPool[i].SetActive(false);
         }
 
-        impactAbility -= TempFunc;
-        impactAbility += TempFunc;
+        impactAbility -= BulletExplosion;
+        impactAbility += BulletExplosion;
     }
 
     private void Update()
@@ -34,10 +35,15 @@ public class BulletManager : MonoBehaviour
         }
     }
 
-    void TempFunc(GameObject bullet)
+    void BulletExplosion(GameObject bullet)
     {
-        Debug.Log("TempFunc");
         Instantiate(explosion, bullet.gameObject.transform.position, Quaternion.identity);
+
+        Collider[] c = Physics.OverlapSphere(bullet.transform.position, explosionRange, 1 << 6);
+        for(int i = 0; i < c.Length; ++i)
+        {
+            Debug.Log($"{c[i].tag.ToString()}");
+        }
     }
 
     public GameObject GetBullet()

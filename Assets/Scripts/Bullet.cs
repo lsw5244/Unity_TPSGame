@@ -18,7 +18,7 @@ public class Bullet : MonoBehaviour
             {
                 _bulletManager.impactAbility(this.gameObject);
             }
-            //_bulletManager.impactAbility(other.gameObject);
+
             this.gameObject.SetActive(false);
         }
     }
