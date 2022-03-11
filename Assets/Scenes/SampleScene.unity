@@ -1247,6 +1247,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentHp: 0
+  _explosionParticle: {fileID: 7479434534752603984, guid: 93dea26b0037d5a439d993d6581004ca, type: 3}
 --- !u!1 &807010354
 GameObject:
   m_ObjectHideFlags: 0

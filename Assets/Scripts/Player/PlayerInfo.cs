@@ -49,8 +49,14 @@ public class PlayerInfo : MonoBehaviour, IPlayer
 
     void HitExplosion(GameObject attacker)
     {
-        Debug.Log($"Attacer : {attacker.tag}, HitExplosionCall!!!!!!!");
         Instantiate(_explosionParticle, transform.position, Quaternion.identity);
+        Collider[] coll = Physics.OverlapSphere(transform.position, 2, 1 << 6);
+
+        for (int i = 0; i < coll.Length; ++i)
+        {
+            coll[i].GetComponent<IMonster>()?.GetDamage(30f);
+        }
+
     }
 
 }
