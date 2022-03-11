@@ -15,6 +15,9 @@ public class BulletManager : MonoBehaviour
     public delegate void ImpactAbilityDelegate(GameObject bullet);
     public ImpactAbilityDelegate impactAbility;
 
+    public delegate void BulletAbilityDeleage(GameObject target);
+    public BulletAbilityDeleage bulletAbilityDeleage;
+
     private void Awake()
     {
         for(int i = 0; i < 10; ++i)
