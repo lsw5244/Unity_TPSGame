@@ -30,11 +30,6 @@ public class BulletManager : MonoBehaviour
 
     private void Update()
     {
-        if(Input.GetKeyDown(KeyCode.Space))
-        {
-            impactAbility(this.gameObject);
-        }
-
         if (Input.GetKeyDown(KeyCode.F1))
         {
             impactAbility -= BulletExplosion;

@@ -15,10 +15,7 @@ public class DebugMonster : MonoBehaviour, IMonster
 
     private void Update()
     {
-        if(Input.GetKeyDown(KeyCode.Space))
-        {
-            Die();
-        }
+
     }
 
     public void Die()
