@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DebugMonster : MonoBehaviour, IMonster
+public class DebugMonster : MonoBehaviour, ILivingEntity
 {
     private float _maxHp = 100;
     [HideInInspector]
