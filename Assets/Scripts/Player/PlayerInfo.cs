@@ -8,11 +8,12 @@ public class PlayerInfo : MonoBehaviour, IPlayer
     [HideInInspector]
     public float currentHp;
 
-    public delegate void HitAbility(GameObject attacker);
-    public HitAbility hitAbility;
-
     [SerializeField]
     private GameObject _explosionParticle;
+    private bool _canHitExplosion = true;
+
+    public delegate void HitAbility(GameObject attacker);
+    public HitAbility hitAbility;
 
     void Start()
     {
@@ -49,6 +50,12 @@ public class PlayerInfo : MonoBehaviour, IPlayer
 
     void HitExplosion(GameObject attacker)
     {
+        if(_canHitExplosion == false)
+        {
+            return;
+        }
+
+        StartCoroutine("StartHitExplosionDelay");
         Instantiate(_explosionParticle, transform.position, Quaternion.identity);
         Collider[] coll = Physics.OverlapSphere(transform.position, 2, 1 << 6);
 
@@ -56,7 +63,12 @@ public class PlayerInfo : MonoBehaviour, IPlayer
         {
             coll[i].GetComponent<IMonster>()?.GetDamage(30f);
         }
-
+    }
+    IEnumerator StartHitExplosionDelay()
+    {
+        _canHitExplosion = false;
+        yield return new WaitForSeconds(1f);
+        _canHitExplosion = true;
     }
 
 }
