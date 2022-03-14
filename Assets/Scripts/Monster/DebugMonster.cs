@@ -31,4 +31,9 @@ public class DebugMonster : MonoBehaviour, IMonster
             Die();
         }
     }
+
+    public void PoisonEffect()
+    {
+        
+    }
 }
