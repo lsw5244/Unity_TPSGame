@@ -16,7 +16,7 @@ public class BulletManager : MonoBehaviour
     public ImpactAbilityDelegate impactAbility;
 
     public delegate void BulletAbilityDeleage(GameObject target);
-    public BulletAbilityDeleage bulletAbilityDeleage;
+    public BulletAbilityDeleage bulletAbility;
 
     private void Awake()
     {
@@ -45,12 +45,12 @@ public class BulletManager : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.F3))
         {
-            bulletAbilityDeleage -= HitTarget;
-            bulletAbilityDeleage += HitTarget;
+            bulletAbility -= HitTarget;
+            bulletAbility += HitTarget;
         }
         else if (Input.GetKeyDown(KeyCode.F4))
         {
-            bulletAbilityDeleage -= HitTarget;
+            bulletAbility -= HitTarget;
         }
     }
     /* ImactAblility */

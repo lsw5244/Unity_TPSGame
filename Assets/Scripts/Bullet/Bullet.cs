@@ -21,9 +21,9 @@ public class Bullet : MonoBehaviour
                 _bulletManager.impactAbility(this.gameObject);
             }
 
-            if (other.gameObject.CompareTag("Monster") && _bulletManager.bulletAbilityDeleage != null)
+            if (other.gameObject.CompareTag("Monster") && _bulletManager.bulletAbility != null)
             {
-                _bulletManager.bulletAbilityDeleage(other.gameObject);
+                _bulletManager.bulletAbility(other.gameObject);
             }
 
             this.gameObject.SetActive(false);
