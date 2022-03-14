@@ -42,8 +42,18 @@ public class BulletManager : MonoBehaviour
         {
             impactAbility -= BulletExplosion;
         }
-    }
 
+        if (Input.GetKeyDown(KeyCode.F3))
+        {
+            bulletAbilityDeleage -= HitTarget;
+            bulletAbilityDeleage += HitTarget;
+        }
+        else if (Input.GetKeyDown(KeyCode.F4))
+        {
+            bulletAbilityDeleage -= HitTarget;
+        }
+    }
+    /* ImactAblility */
     void BulletExplosion(GameObject bullet)
     {
         Instantiate(explosion, bullet.gameObject.transform.position, Quaternion.identity);
@@ -66,5 +76,12 @@ public class BulletManager : MonoBehaviour
         }
 
         return null;
+    }
+    /* BulletAbility */
+    void HitTarget(GameObject target)
+    {
+        target.GetComponent<IMonster>().GetDamage(50f);
+
+        Debug.Log($"{target.name} Hit!!!");
     }
 }
