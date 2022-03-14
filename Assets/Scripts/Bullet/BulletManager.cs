@@ -12,6 +12,8 @@ public class BulletManager : MonoBehaviour
     public float explosionRange = 2f;
     public float explosionDamage = 20f;
 
+    public float poisonDamage = 20f;
+
     [SerializeField]
     private PlayerInfo _playerInfo;
 
@@ -100,13 +102,13 @@ public class BulletManager : MonoBehaviour
     void HitTarget(GameObject target)
     {
         target.GetComponent<IMonster>().GetDamage(_playerInfo.attackPower);
-
+        
         //Debug.Log($"{target.name} Hit!!!");
     }
 
     void PoisonBullet(GameObject target)
     {
-        target.GetComponent<IMonster>().PoisonEffect();
+        target.GetComponent<IMonster>().PoisonEffect(poisonDamage);
         Debug.Log($"{target.name} Poison!!!!!");
     }
 }

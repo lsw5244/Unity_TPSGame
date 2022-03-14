@@ -36,26 +36,25 @@ public class DebugMonster : MonoBehaviour, IMonster
         }
     }
 
-    public void PoisonEffect()
+    public void PoisonEffect(float damage)
     {
         poisonDamageCount = 5;
 
         if (_isPoisonState == false)
         {
-            StartCoroutine(Poison());
+            StartCoroutine(Poison(damage));
         }
     }
 
-    IEnumerator Poison()
+    IEnumerator Poison(float damage)
     {
-        Debug.Log($"Poison È£Ãâ !!!");
 
         while (poisonDamageCount > 0)
         {
-            this.GetDamage(50.0f);
-            Debug.Log($"@@@@@@@@@@@@@{poisonDamageCount}");
+            this.GetDamage(damage);
 
             yield return new WaitForSeconds(poisonDamageDelay);
+
             poisonDamageCount--;
         }
 
