@@ -59,6 +59,18 @@ public class BulletManager : MonoBehaviour
             bulletAbility -= HitTarget;
             Debug.Log("HitTarget 비활성화");
         }
+
+        if (Input.GetKeyDown(KeyCode.F5))
+        {
+            bulletAbility -= PoisonBullet;
+            bulletAbility += PoisonBullet;
+            Debug.Log("PoisonBullet 활성화");
+        }
+        else if (Input.GetKeyDown(KeyCode.F6))
+        {
+            bulletAbility -= PoisonBullet;
+            Debug.Log("PoisonBullet 비활성화");
+        }
     }
     /* ImactAblility */
     void BulletExplosion(GameObject bullet)
@@ -89,6 +101,12 @@ public class BulletManager : MonoBehaviour
     {
         target.GetComponent<IMonster>().GetDamage(_playerInfo.attackPower);
 
-        Debug.Log($"{target.name} Hit!!!");
+        //Debug.Log($"{target.name} Hit!!!");
+    }
+
+    void PoisonBullet(GameObject target)
+    {
+        target.GetComponent<IMonster>().PoisonEffect();
+        Debug.Log($"{target.name} Poison!!!!!");
     }
 }
