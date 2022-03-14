@@ -12,6 +12,9 @@ public class DebugMonster : MonoBehaviour, IMonster
     public float poisonDamageDelay = 0.5f;
     public int poisonDamageCount = 5;
 
+    [SerializeField]
+    private GameObject _poisonParicle;
+
     void Start()
     {
         currentHp = _maxHp;
@@ -48,16 +51,19 @@ public class DebugMonster : MonoBehaviour, IMonster
 
     IEnumerator Poison(float damage)
     {
+        _poisonParicle.SetActive(true);
+        _isPoisonState = true;
 
         while (poisonDamageCount > 0)
         {
             this.GetDamage(damage);
 
-            yield return new WaitForSeconds(poisonDamageDelay);
+            yield return new WaitForSeconds(poisonDamageDelay);     // 0.5초에 한 번씩 실행되도록
 
             poisonDamageCount--;
         }
 
-
+        _isPoisonState = false;
+        _poisonParicle.SetActive(false);
     }
 }
