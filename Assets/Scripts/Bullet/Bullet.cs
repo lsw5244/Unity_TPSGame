@@ -14,13 +14,18 @@ public class Bullet : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Player") == false)
         {
-            other.gameObject.GetComponent<IMonster>()?.GetDamage(50f);
+            //other.gameObject.GetComponent<IMonster>()?.GetDamage(50f);
                        
             if (_bulletManager.impactAbility != null)
             {
                 _bulletManager.impactAbility(this.gameObject);
             }
-            
+
+            if (other.gameObject.CompareTag("Monster") && _bulletManager.bulletAbility != null)
+            {
+                _bulletManager.bulletAbility(other.gameObject);
+            }
+
             this.gameObject.SetActive(false);
         }
     }

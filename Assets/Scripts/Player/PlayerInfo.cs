@@ -12,6 +12,8 @@ public class PlayerInfo : MonoBehaviour, IPlayer
     private GameObject _explosionParticle;
     private bool _canHitExplosion = true;
 
+    public float attackPower = 50f;
+
     public delegate void HitAbility(GameObject attacker);
     public HitAbility hitAbility;
 

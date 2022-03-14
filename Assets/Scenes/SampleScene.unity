@@ -424,6 +424,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Monster (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 8638007157888159241, guid: 4c06cddc94bf24445ab49251d6ee7ed7, type: 3}
+      propertyPath: m_TagString
+      value: Monster
+      objectReference: {fileID: 0}
     - target: {fileID: 8638007157888159247, guid: 4c06cddc94bf24445ab49251d6ee7ed7, type: 3}
       propertyPath: m_RootOrder
       value: 10
@@ -832,6 +836,10 @@ PrefabInstance:
     - target: {fileID: 8638007157888159241, guid: 4c06cddc94bf24445ab49251d6ee7ed7, type: 3}
       propertyPath: m_Name
       value: Monster (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8638007157888159241, guid: 4c06cddc94bf24445ab49251d6ee7ed7, type: 3}
+      propertyPath: m_TagString
+      value: Monster
       objectReference: {fileID: 0}
     - target: {fileID: 8638007157888159247, guid: 4c06cddc94bf24445ab49251d6ee7ed7, type: 3}
       propertyPath: m_RootOrder
@@ -2303,6 +2311,10 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 8638007157888159241, guid: 4c06cddc94bf24445ab49251d6ee7ed7, type: 3}
       propertyPath: m_Name
+      value: Monster
+      objectReference: {fileID: 0}
+    - target: {fileID: 8638007157888159241, guid: 4c06cddc94bf24445ab49251d6ee7ed7, type: 3}
+      propertyPath: m_TagString
       value: Monster
       objectReference: {fileID: 0}
     - target: {fileID: 8638007157888159247, guid: 4c06cddc94bf24445ab49251d6ee7ed7, type: 3}
