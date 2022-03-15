@@ -20,10 +20,14 @@ public class PlayerCamera : MonoBehaviour
     private Transform _normalModCameraTransfrom;
 
     [SerializeField]
+    private Transform _headTransfrom;
+
+    [SerializeField]
     private Image _crosshairImage;  // TODO : UI매니저가 생기면 해당 변수와 기능을 UI매니저에서 하도록 구현하기
 
     private float _currentVerticalViewAngle = 0;
     private Vector3 _aimModAngle;
+
 
     void Update()
     {
@@ -52,7 +56,7 @@ public class PlayerCamera : MonoBehaviour
                 , Input.GetAxis("Mouse X") * _cameraMoveSpeed * Time.deltaTime
                 , 0f);
 
-            _cameraTransform.LookAt(transform.position);
+            _cameraTransform.LookAt(_headTransfrom.position);
         }
         else if(Input.GetMouseButtonUp(1))
         {
@@ -80,6 +84,6 @@ public class PlayerCamera : MonoBehaviour
         // 카메라 위치 원래 위치로 돌리기
         _cameraTransform.position = Vector3.Lerp(_cameraTransform.position, _normalModCameraTransfrom.position, 0.02f);
         
-        _cameraTransform.LookAt(transform.position);
+        _cameraTransform.LookAt(_headTransfrom.position);
     }
 }
