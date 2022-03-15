@@ -27,6 +27,12 @@ public class PlayerAnimation : MonoBehaviour
         {
             _animator.SetBool("AimMod", false);
         }
+
+        _animator.SetFloat("xDir", Input.GetAxis("Horizontal"));
+        _animator.SetFloat("zDir", Input.GetAxis("Vertical"));
+
+        Debug.Log(Input.GetAxis("Horizontal"));
+
     }
 
     private void OnAnimatorIK(int layerIndex)
