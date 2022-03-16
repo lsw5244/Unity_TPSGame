@@ -600,6 +600,26 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 802091811}
   m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &930470140 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7899445820885188245, guid: 81b29a4bd1d04e64181aaa07b6be8f47, type: 3}
+  m_PrefabInstance: {fileID: 8572284485621249987}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &930470141
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 930470140}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4412775e17968642aee0761777f4b59, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  currentHp: 0
+  _explosionParticle: {fileID: 7479434534752603984, guid: 93dea26b0037d5a439d993d6581004ca, type: 3}
+  attackPower: 50
 --- !u!1 &951236472
 GameObject:
   m_ObjectHideFlags: 0
@@ -850,12 +870,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 902086191c555cd4bbf6fe2d0ae0287c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _bullet: {fileID: 4844902710794617143, guid: 327b73295736f2e4e8c7e0aba9632f68, type: 3}
+  _bullet: {fileID: 6426696858504711101, guid: 9ce4fc296457e2449a15df253d816f65, type: 3}
   explosion: {fileID: 7479434534752603984, guid: 93dea26b0037d5a439d993d6581004ca, type: 3}
   explosionRange: 2
   explosionDamage: 20
   poisonDamage: 20
-  _playerInfo: {fileID: 0}
+  _playerInfo: {fileID: 930470141}
 --- !u!4 &1450782847
 Transform:
   m_ObjectHideFlags: 0
