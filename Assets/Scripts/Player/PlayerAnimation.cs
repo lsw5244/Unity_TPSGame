@@ -12,6 +12,9 @@ public class PlayerAnimation : MonoBehaviour
     private Transform _gunHandGaurdTransfom;
     private Animator _animator;
 
+    private float _horizontal = 0f;
+    private float _vertical = 0f;
+
     private void Start()
     {
         _animator = GetComponent<Animator>();
@@ -28,16 +31,16 @@ public class PlayerAnimation : MonoBehaviour
             _animator.SetBool("AimMod", false);
         }
 
-        _animator.SetFloat("xDir", Input.GetAxis("Horizontal"));
-        _animator.SetFloat("zDir", Input.GetAxis("Vertical"));
+        _horizontal = Input.GetAxis("Horizontal");
+        _vertical = Input.GetAxis("Vertical");
 
-        Debug.Log(Input.GetAxis("Horizontal"));
+        _animator.SetFloat("xDir", _horizontal);
+        _animator.SetFloat("zDir", _vertical);
 
     }
 
     private void OnAnimatorIK(int layerIndex)
     {
-
         _animator.SetIKPositionWeight(AvatarIKGoal.RightHand, 1f);
         _animator.SetIKPosition(AvatarIKGoal.RightHand, _gunGripTransfrom.position);
 
