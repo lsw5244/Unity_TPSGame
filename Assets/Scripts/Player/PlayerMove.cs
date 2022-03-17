@@ -26,8 +26,10 @@ public class PlayerMove : MonoBehaviour
         Vector3 moveFoward = _vertical * Time.deltaTime * moveSpeed * transform.forward; // 앞, 뒤로 움직이는 정도
         Vector3 moveRight = _horizontal * Time.deltaTime * moveSpeed * transform.right;  // 좌, 우로 움직이는 정도
 
-        transform.position += moveFoward + moveRight;
+        //transform.position += moveFoward + moveRight;
 
-        //_playerRigidbody.MovePosition(_playerRigidbody.position + moveFoward + moveRight);
+        //_playerRigidbody.velocity += moveFoward + moveRight;
+
+        _playerRigidbody.MovePosition(_playerRigidbody.position + moveFoward + moveRight);
     }
 }
