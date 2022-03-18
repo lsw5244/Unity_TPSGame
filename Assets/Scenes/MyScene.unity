@@ -9404,6 +9404,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 930470141, guid: 81b29a4bd1d04e64181aaa07b6be8f47, type: 3}
+      propertyPath: _explosionParticle
+      value: 
+      objectReference: {fileID: 3160334233454838241, guid: 24c62169074612f48908f112bd945d9e, type: 3}
     - target: {fileID: 7416206695581246511, guid: 81b29a4bd1d04e64181aaa07b6be8f47, type: 3}
       propertyPath: m_RootOrder
       value: 11

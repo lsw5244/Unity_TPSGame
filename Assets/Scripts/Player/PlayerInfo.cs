@@ -35,7 +35,8 @@ public class PlayerInfo : MonoBehaviour, IPlayer
 
     public void Die()
     {
-        GetComponentInChildren<MeshRenderer>().material.color = Color.blue;
+        //GetComponentInChildren<MeshRenderer>().material.color = Color.blue;
+        Debug.Log("PlayerDie !!!!! In PlayerInfo");
     }
 
     public void GetDamage(float damage, GameObject attacker)
