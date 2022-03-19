@@ -1,14 +1,17 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
+
 
 public class MeleeMonster : MonoBehaviour, IMonster
 {
     enum State
     {
-        Idle, Trace, Attack, Hit, Die
+        Idle, Trace, Attack, Die
     }
     private Animator _animator;
+    private NavMeshAgent _navMeshAgent;
 
     [SerializeField]
     private float _maxHP = 100f;
@@ -22,14 +25,27 @@ public class MeleeMonster : MonoBehaviour, IMonster
     [SerializeField]
     private GameObject _poisonParicle;
 
+    private Transform _playerTransform;
+
+    private bool _isAlive = true;
+
     void Start()
     {
         currentHp = _maxHP;
         _animator = GetComponent<Animator>();
+        _navMeshAgent = GetComponent<NavMeshAgent>();
+        _playerTransform = GameObject.Find("Player").transform;/* Find("Player");*/
     }
 
     void Update()
     {
+        //Debug.Log(Vector3.Distance(_playerTransform.position, transform.position));
+
+        if(Vector3.Distance(_playerTransform.position, transform.position) < 3f)
+        {
+            _navMeshAgent.destination = _playerTransform.position;
+        }
+
         if(Input.GetKeyDown(KeyCode.Keypad1))
         {
             _animator.SetBool("Trace", true);
@@ -39,10 +55,14 @@ public class MeleeMonster : MonoBehaviour, IMonster
         {
             GetDamage(1f);
         }
+        Debug.Log(currentHp);
     }
 
     public void GetDamage(float damage)
     {
+        if (_isAlive == false)
+            return;
+
         _animator.SetTrigger("Hit");
         currentHp -= damage;
         if (currentHp <= 0f)
@@ -54,6 +74,11 @@ public class MeleeMonster : MonoBehaviour, IMonster
     public void Die()
     {
         Debug.Log("MeleeMonster Die!!!!");
+        _isAlive = false;
+        _animator.SetTrigger("Die");
+        _navMeshAgent.isStopped = true;
+        _navMeshAgent.velocity = Vector3.zero;
+        GetComponent<CapsuleCollider>().enabled = false;
     }
 
     public void PoisonEffect(float damage)
@@ -73,7 +98,11 @@ public class MeleeMonster : MonoBehaviour, IMonster
 
         while (poisonDamageCount > 0)
         {
-            this.GetDamage(damage);
+            currentHp -= damage;
+            if (currentHp <= 0f)
+            {
+                Die();
+            }
 
             yield return new WaitForSeconds(poisonDamageDelay);     // 0.5초에 한 번씩 실행되도록
 
@@ -88,4 +117,16 @@ public class MeleeMonster : MonoBehaviour, IMonster
     {
         Debug.Log("Attack");
     }
+
+    void Idle()
+    {
+
+    }
+
+    void Trace()
+    {
+
+    }
+
+    //Idle, Trace, Attack, Die
 }
