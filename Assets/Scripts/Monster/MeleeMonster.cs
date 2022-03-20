@@ -29,6 +29,9 @@ public class MeleeMonster : MonoBehaviour, IMonster
 
     private bool _isAlive = true;
 
+    public float traceDistance = 5f;
+    public float attackDistance = 3f;
+
     void Start()
     {
         currentHp = _maxHP;
@@ -39,23 +42,22 @@ public class MeleeMonster : MonoBehaviour, IMonster
 
     void Update()
     {
-        //Debug.Log(Vector3.Distance(_playerTransform.position, transform.position));
+        float distance = Vector3.Distance(transform.position, _playerTransform.position);
 
-        if(Vector3.Distance(_playerTransform.position, transform.position) < 3f)
-        {
-            _navMeshAgent.destination = _playerTransform.position;
-        }
-
-        if(Input.GetKeyDown(KeyCode.Keypad1))
-        {
-            _animator.SetBool("Trace", true);
-        }
-
-        if (Input.GetKeyDown(KeyCode.Keypad2))
-        {
-            GetDamage(1f);
-        }
-        Debug.Log(currentHp);
+        /*//Debug.Log(Vector3.Distance(_playerTransform.position, transform.position));
+        //if(Vector3.Distance(_playerTransform.position, transform.position) < 3f)
+        //{
+        //    _navMeshAgent.destination = _playerTransform.position;
+        //}
+        //if(Input.GetKeyDown(KeyCode.Keypad1))
+        //{
+        //    _animator.SetBool("Trace", true);
+        //}
+        //if (Input.GetKeyDown(KeyCode.Keypad2))
+        //{
+        //    GetDamage(1f);
+        //}
+        //Debug.Log(currentHp);*/
     }
 
     public void GetDamage(float damage)
@@ -74,10 +76,13 @@ public class MeleeMonster : MonoBehaviour, IMonster
     public void Die()
     {
         Debug.Log("MeleeMonster Die!!!!");
-        _isAlive = false;
         _animator.SetTrigger("Die");
+
+        _isAlive = false;
+
         _navMeshAgent.isStopped = true;
         _navMeshAgent.velocity = Vector3.zero;
+
         GetComponent<CapsuleCollider>().enabled = false;
     }
 
@@ -116,16 +121,25 @@ public class MeleeMonster : MonoBehaviour, IMonster
     public void Attack()
     {
         Debug.Log("Attack");
+        _animator.SetBool("Attack", true);
     }
 
     void Idle()
     {
-
+        // 애니메이션 변경
+        _animator.SetBool("Trace", false);
+        // 추적 중지
+        _navMeshAgent.isStopped = true;
+        _navMeshAgent.velocity = Vector3.zero;
     }
 
     void Trace()
     {
-
+        // 애니메이션 변경
+        _animator.SetBool("Attack", false);
+        _animator.SetBool("Trace", true);
+        // 추적 시작
+        _navMeshAgent.destination = _playerTransform.position;
     }
 
     //Idle, Trace, Attack, Die
