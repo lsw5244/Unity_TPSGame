@@ -12,11 +12,13 @@ public class MeleeMonster : MonoBehaviour, IMonster
     }
     private Animator _animator;
     private NavMeshAgent _navMeshAgent;
+    private BoxCollider _attackCollider;
 
     [SerializeField]
     private float _maxHP = 100f;
     [HideInInspector]
     public float currentHp;
+    public float attackPower = 10f;
 
     private bool _isPoisonState = false;
     public float poisonDamageDelay = 0.5f;
@@ -28,6 +30,7 @@ public class MeleeMonster : MonoBehaviour, IMonster
     private Transform _playerTransform;
 
     private bool _isAlive = true;
+    private bool _attentionMode = false;
 
     public float traceDistance = 5f;
     public float attackDistance = 3f;
@@ -39,6 +42,9 @@ public class MeleeMonster : MonoBehaviour, IMonster
         currentHp = _maxHP;
         _animator = GetComponent<Animator>();
         _navMeshAgent = GetComponent<NavMeshAgent>();
+        _attackCollider = GetComponent<BoxCollider>();
+
+        _attackCollider.enabled = false;
         _playerTransform = GameObject.Find("Player").transform;/* Find("Player");*/
         StartCoroutine(TraceCheck());
     }
@@ -82,7 +88,6 @@ public class MeleeMonster : MonoBehaviour, IMonster
 
             if (_animator.GetCurrentAnimatorStateInfo(0).IsName("hit") == true)
             {
-                //_navMeshAgent.updatePosition = false;
                 _navMeshAgent.velocity = Vector3.zero;
             }
 
@@ -104,10 +109,14 @@ public class MeleeMonster : MonoBehaviour, IMonster
         }
     }
 
+    
+
     public void Die()
     {
-        Debug.Log("MeleeMonster Die!!!!");
         _isAlive = false;
+
+        StopAllCoroutines();
+        _poisonParicle.SetActive(false);
 
         _animator.SetTrigger("Die");
         
@@ -115,6 +124,7 @@ public class MeleeMonster : MonoBehaviour, IMonster
         _navMeshAgent.velocity = Vector3.zero;
 
         GetComponent<CapsuleCollider>().enabled = false;
+        _attackCollider.enabled = false;
     }
 
     public void PoisonEffect(float damage)
@@ -149,14 +159,14 @@ public class MeleeMonster : MonoBehaviour, IMonster
         _poisonParicle.SetActive(false);
     }
 
-    public void PlayerAttack()
+    public void StartAttack()
     {
-        Debug.Log("Event!!!");
+        _attackCollider.enabled = true;
     }
 
     public void StopAttack()
     {
-        Debug.Log("Event STOP!!!!!!!");
+        _attackCollider.enabled = false;
     }
 
     public void Attack()
@@ -190,5 +200,15 @@ public class MeleeMonster : MonoBehaviour, IMonster
         _navMeshAgent.destination = _playerTransform.position;
     }
 
+    void OnTriggerEnter(Collider coll)
+    {
+        if(coll.CompareTag("Player") == true)
+        {
+            coll.GetComponent<IPlayer>()?.GetDamage(attackPower, this.gameObject);
+            _attackCollider.enabled = false;
+        }
+    }
+
     //Idle, Trace, Attack, Die
+
 }
