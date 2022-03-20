@@ -31948,6 +31948,8 @@ MonoBehaviour:
   poisonDamageDelay: 0.5
   poisonDamageCount: 5
   _poisonParicle: {fileID: 1949837169}
+  traceDistance: 8
+  attackDistance: 2
 --- !u!195 &7281146824480746525
 NavMeshAgent:
   m_ObjectHideFlags: 0

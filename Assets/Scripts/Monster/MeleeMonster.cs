@@ -32,32 +32,51 @@ public class MeleeMonster : MonoBehaviour, IMonster
     public float traceDistance = 5f;
     public float attackDistance = 3f;
 
+    private State _currentState = State.Idle;
     void Start()
     {
         currentHp = _maxHP;
         _animator = GetComponent<Animator>();
         _navMeshAgent = GetComponent<NavMeshAgent>();
         _playerTransform = GameObject.Find("Player").transform;/* Find("Player");*/
+        StartCoroutine(TraceCheck());
     }
 
-    void Update()
+    IEnumerator TraceCheck()
     {
-        float distance = Vector3.Distance(transform.position, _playerTransform.position);
+        while(_isAlive == true)
+        {
+            float distance = Vector3.Distance(transform.position, _playerTransform.position);
 
-        /*//Debug.Log(Vector3.Distance(_playerTransform.position, transform.position));
-        //if(Vector3.Distance(_playerTransform.position, transform.position) < 3f)
-        //{
-        //    _navMeshAgent.destination = _playerTransform.position;
-        //}
-        //if(Input.GetKeyDown(KeyCode.Keypad1))
-        //{
-        //    _animator.SetBool("Trace", true);
-        //}
-        //if (Input.GetKeyDown(KeyCode.Keypad2))
-        //{
-        //    GetDamage(1f);
-        //}
-        //Debug.Log(currentHp);*/
+            if (distance < attackDistance)
+            {
+                _currentState = State.Attack;
+            }
+            else if (distance < traceDistance)
+            {
+                _currentState = State.Trace;
+            }
+            else
+            {
+                _currentState = State.Idle;
+            }
+
+            switch (_currentState)
+            {
+                case State.Attack:
+                    Attack();
+                    break;
+                case State.Trace:
+                    Trace();
+                    break;
+                case State.Idle:
+                    Idle();
+                    break;
+            }
+
+            yield return new WaitForSeconds(0.5f);
+        }
+
     }
 
     public void GetDamage(float damage)
@@ -120,8 +139,14 @@ public class MeleeMonster : MonoBehaviour, IMonster
 
     public void Attack()
     {
-        Debug.Log("Attack");
+        // 애니메이션 변경
         _animator.SetBool("Attack", true);
+
+        transform.LookAt(_playerTransform.position);
+
+        // 추적 중지
+        _navMeshAgent.isStopped = true;
+        _navMeshAgent.velocity = Vector3.zero;
     }
 
     void Idle()
@@ -139,6 +164,7 @@ public class MeleeMonster : MonoBehaviour, IMonster
         _animator.SetBool("Attack", false);
         _animator.SetBool("Trace", true);
         // 추적 시작
+        _navMeshAgent.isStopped = false;
         _navMeshAgent.destination = _playerTransform.position;
     }
 
