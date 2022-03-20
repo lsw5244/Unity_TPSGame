@@ -154,6 +154,11 @@ public class MeleeMonster : MonoBehaviour, IMonster
         Debug.Log("Event!!!");
     }
 
+    public void StopAttack()
+    {
+        Debug.Log("Event STOP!!!!!!!");
+    }
+
     public void Attack()
     {
         // 애니메이션 변경
