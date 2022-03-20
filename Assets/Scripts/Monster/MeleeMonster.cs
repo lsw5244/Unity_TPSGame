@@ -33,6 +33,7 @@ public class MeleeMonster : MonoBehaviour, IMonster
     public float attackDistance = 3f;
 
     private State _currentState = State.Idle;
+
     void Start()
     {
         currentHp = _maxHP;
@@ -40,6 +41,11 @@ public class MeleeMonster : MonoBehaviour, IMonster
         _navMeshAgent = GetComponent<NavMeshAgent>();
         _playerTransform = GameObject.Find("Player").transform;/* Find("Player");*/
         StartCoroutine(TraceCheck());
+    }
+
+    void Update()
+    {
+
     }
 
     IEnumerator TraceCheck()
@@ -74,7 +80,13 @@ public class MeleeMonster : MonoBehaviour, IMonster
                     break;
             }
 
-            yield return new WaitForSeconds(0.5f);
+            if (_animator.GetCurrentAnimatorStateInfo(0).IsName("hit") == true)
+            {
+                //_navMeshAgent.updatePosition = false;
+                _navMeshAgent.velocity = Vector3.zero;
+            }
+
+            yield return new WaitForSeconds(0.3f);
         }
 
     }
@@ -95,10 +107,10 @@ public class MeleeMonster : MonoBehaviour, IMonster
     public void Die()
     {
         Debug.Log("MeleeMonster Die!!!!");
-        _animator.SetTrigger("Die");
-
         _isAlive = false;
 
+        _animator.SetTrigger("Die");
+        
         _navMeshAgent.isStopped = true;
         _navMeshAgent.velocity = Vector3.zero;
 
