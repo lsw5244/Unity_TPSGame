@@ -149,6 +149,11 @@ public class MeleeMonster : MonoBehaviour, IMonster
         _poisonParicle.SetActive(false);
     }
 
+    public void PlayerAttack()
+    {
+        Debug.Log("Event!!!");
+    }
+
     public void Attack()
     {
         // 애니메이션 변경
