@@ -83,8 +83,6 @@ public class MeleeMonster : MonoBehaviour, IMonster
             if (_animator.GetCurrentAnimatorStateInfo(0).IsName("hit") == true)
             {
                 //_navMeshAgent.updatePosition = false;
-                Debug.Log("@@@@");
-
                 _navMeshAgent.velocity = Vector3.zero;
             }
 
