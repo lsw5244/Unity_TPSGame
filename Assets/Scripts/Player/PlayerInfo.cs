@@ -31,8 +31,6 @@ public class PlayerInfo : MonoBehaviour, IPlayer
 
             GetDamage(50f, this.gameObject);
         }
-
-        Debug.Log(currentHp);
     }
 
     public void Die()
