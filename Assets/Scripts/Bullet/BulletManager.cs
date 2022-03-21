@@ -25,9 +25,6 @@ public class BulletManager : MonoBehaviour
             _bulletPool[i].GetComponent<Bullet>().bulletManager = this;
             _bulletPool[i].SetActive(false);
         }
-
-        //impactAbility -= BulletExplosion;
-        //impactAbility += BulletExplosion;
     }
 
     private void Update()

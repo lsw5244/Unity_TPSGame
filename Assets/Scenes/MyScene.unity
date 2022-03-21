@@ -6838,10 +6838,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _bullet: {fileID: 6426696858504711101, guid: 9ce4fc296457e2449a15df253d816f65, type: 3}
-  explosion: {fileID: 3176172866420598826, guid: b4d2c35535dddfd469ec4dd256f1db91, type: 3}
-  explosionRange: 2
-  explosionDamage: 20
-  poisonDamage: 20
   _playerInfo: {fileID: 1345144644}
 --- !u!4 &483712929
 Transform:
@@ -26667,6 +26663,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 40a12355678511f49be6f9c1d7e0ad6e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  bulletDamage: 25
+  poisonDamage: 20
 --- !u!1001 &1872459132
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -29008,6 +29006,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 823726d4a3dcd9745941022519e51614, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  explosion: {fileID: 3176172866420598826, guid: b4d2c35535dddfd469ec4dd256f1db91, type: 3}
+  explosionRange: 2
+  explosionDamage: 20
 --- !u!4 &2088541482
 Transform:
   m_ObjectHideFlags: 0
