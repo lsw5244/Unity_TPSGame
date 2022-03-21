@@ -66,4 +66,9 @@ public class DebugMonster : MonoBehaviour, IMonster
         _isPoisonState = false;
         _poisonParicle.SetActive(false);
     }
+
+    public void Attack()
+    {
+        throw new System.NotImplementedException();
+    }
 }

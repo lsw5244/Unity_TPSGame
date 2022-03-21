@@ -103,7 +103,7 @@ public class BulletManager : MonoBehaviour
     {
         target.GetComponent<IMonster>().GetDamage(_playerInfo.attackPower);
         
-        //Debug.Log($"{target.name} Hit!!!");
+        Debug.Log($"{target.name} Hit!!!");
     }
 
     void PoisonBullet(GameObject target)

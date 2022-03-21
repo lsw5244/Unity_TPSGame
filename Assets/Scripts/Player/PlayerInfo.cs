@@ -31,6 +31,8 @@ public class PlayerInfo : MonoBehaviour, IPlayer
 
             GetDamage(50f, this.gameObject);
         }
+
+        Debug.Log(currentHp);
     }
 
     public void Die()
@@ -43,7 +45,10 @@ public class PlayerInfo : MonoBehaviour, IPlayer
     {
         currentHp -= damage;
 
-        hitAbility(attacker);
+        if(hitAbility != null)
+        {
+            hitAbility(attacker);
+        }
 
         if (currentHp <= 0f)
         {
