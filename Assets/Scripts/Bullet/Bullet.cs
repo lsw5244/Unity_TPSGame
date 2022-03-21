@@ -16,14 +16,14 @@ public class Bullet : MonoBehaviour
         {
             //other.gameObject.GetComponent<IMonster>()?.GetDamage(50f);
                        
-            if (_bulletManager.impactAbility != null)
+            if (ImpactAbility.Instance.impactAbility != null)
             {
-                _bulletManager.impactAbility(this.gameObject);
+                ImpactAbility.Instance.impactAbility(this.gameObject);
             }
 
-            if (other.gameObject.CompareTag("Monster") && _bulletManager.bulletAbility != null)
+            if (other.gameObject.CompareTag("Monster") && BulletAbility.Instance.bulletAbility != null)
             {
-                _bulletManager.bulletAbility(other.gameObject);
+                BulletAbility.Instance.bulletAbility(other.gameObject);
             }
 
             this.gameObject.SetActive(false);
