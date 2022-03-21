@@ -12,16 +12,14 @@ public class BulletManager : MonoBehaviour
     public float explosionRange = 2f;
     public float explosionDamage = 20f;
 
-    public float poisonDamage = 20f;
-
     [SerializeField]
     private PlayerInfo _playerInfo;
 
     public delegate void ImpactAbilityDelegate(GameObject bullet);
     public ImpactAbilityDelegate impactAbility;
 
-    public delegate void BulletAbilityDeleage(GameObject target);
-    public BulletAbilityDeleage bulletAbility;
+    //public delegate void BulletAbilityDeleage(GameObject target);
+    //public BulletAbilityDeleage bulletAbility;
 
     private void Awake()
     {
@@ -50,29 +48,7 @@ public class BulletManager : MonoBehaviour
             Debug.Log("BulletExplosion 비활성화");
         }
 
-        if (Input.GetKeyDown(KeyCode.F3))
-        {
-            bulletAbility -= HitTarget;
-            bulletAbility += HitTarget;
-            Debug.Log("HitTarget 활성화");
-        }
-        else if (Input.GetKeyDown(KeyCode.F4))
-        {
-            bulletAbility -= HitTarget;
-            Debug.Log("HitTarget 비활성화");
-        }
-
-        if (Input.GetKeyDown(KeyCode.F5))
-        {
-            bulletAbility -= PoisonBullet;
-            bulletAbility += PoisonBullet;
-            Debug.Log("PoisonBullet 활성화");
-        }
-        else if (Input.GetKeyDown(KeyCode.F6))
-        {
-            bulletAbility -= PoisonBullet;
-            Debug.Log("PoisonBullet 비활성화");
-        }
+        
     }
     /* ImactAblility */
     void BulletExplosion(GameObject bullet)
@@ -98,17 +74,5 @@ public class BulletManager : MonoBehaviour
 
         return null;
     }
-    /* BulletAbility */
-    void HitTarget(GameObject target)
-    {
-        target.GetComponent<IMonster>().GetDamage(_playerInfo.attackPower);
-        
-        Debug.Log($"{target.name} Hit!!!");
-    }
-
-    void PoisonBullet(GameObject target)
-    {
-        target.GetComponent<IMonster>().PoisonEffect(poisonDamage);
-        Debug.Log($"{target.name} Poison!!!!!");
-    }
+  
 }

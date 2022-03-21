@@ -7,6 +7,12 @@ public class BulletAbility : MonoBehaviour
     public static BulletAbility _instance;
     public static BulletAbility Instance { get { return _instance; } }
 
+    public delegate void BulletAbilityDeleage(GameObject target);
+    public BulletAbilityDeleage bulletAbility;
+
+    public float bulletDamage = 25f;
+    public float poisonDamage = 20f;
+
     private void Awake()
     {
         if (Instance == null)
@@ -21,19 +27,44 @@ public class BulletAbility : MonoBehaviour
         }
     }
 
-    public void DebugFunc()
-    {
-        Debug.Log("@@@@@@@@@");
-    }
-
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
     void Update()
     {
-        
+        if (Input.GetKeyDown(KeyCode.F3))
+        {
+            bulletAbility -= HitTarget;
+            bulletAbility += HitTarget;
+            Debug.Log("HitTarget 활성화");
+        }
+        else if (Input.GetKeyDown(KeyCode.F4))
+        {
+            bulletAbility -= HitTarget;
+            Debug.Log("HitTarget 비활성화");
+        }
+
+        if (Input.GetKeyDown(KeyCode.F5))
+        {
+            bulletAbility -= PoisonBullet;
+            bulletAbility += PoisonBullet;
+            Debug.Log("PoisonBullet 활성화");
+        }
+        else if (Input.GetKeyDown(KeyCode.F6))
+        {
+            bulletAbility -= PoisonBullet;
+            Debug.Log("PoisonBullet 비활성화");
+        }
+    }
+
+    /* BulletAbility */
+    void HitTarget(GameObject target)
+    {
+        target.GetComponent<IMonster>().GetDamage(bulletDamage);
+
+        Debug.Log($"{target.name} Hit!!!");
+    }
+
+    void PoisonBullet(GameObject target)
+    {
+        target.GetComponent<IMonster>().PoisonEffect(poisonDamage);
+        Debug.Log($"{target.name} Poison!!!!!");
     }
 }
