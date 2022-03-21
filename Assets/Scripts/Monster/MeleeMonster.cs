@@ -30,7 +30,8 @@ public class MeleeMonster : MonoBehaviour, IMonster
     private Transform _playerTransform;
 
     private bool _isAlive = true;
-    private bool _attentionMode = false;
+    private bool _attentionModeTrigger = false;
+    private bool _continueAttentionMode = false;
 
     public float traceDistance = 5f;
     public float attackDistance = 3f;
@@ -101,6 +102,14 @@ public class MeleeMonster : MonoBehaviour, IMonster
         if (_isAlive == false)
             return;
 
+        _continueAttentionMode = true;
+
+        if (_attentionModeTrigger == false)
+        {
+            _attentionModeTrigger = true;
+            StartCoroutine(AttentionMode());
+        }
+
         _animator.SetTrigger("Hit");
         currentHp -= damage;
         if (currentHp <= 0f)
@@ -109,7 +118,20 @@ public class MeleeMonster : MonoBehaviour, IMonster
         }
     }
 
-    
+    IEnumerator AttentionMode()
+    {
+        traceDistance *= 2f;
+
+        while(_continueAttentionMode == true)
+        {
+            _continueAttentionMode = false;
+
+            yield return new WaitForSeconds(5f);
+        }
+
+        _attentionModeTrigger = false;
+        traceDistance /= 2f;
+    }
 
     public void Die()
     {
