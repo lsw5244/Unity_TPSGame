@@ -12,18 +12,17 @@ public class Bullet : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        // 플레이어 이외의 오브젝트와 충돌 했을 때 처리
         if (other.gameObject.CompareTag("Player") == false)
-        {
-            //other.gameObject.GetComponent<IMonster>()?.GetDamage(50f);
-                       
-            if (_bulletManager.impactAbility != null)
+        {                     
+            if (ImpactAbility.Instance.impactAbility != null)
             {
-                _bulletManager.impactAbility(this.gameObject);
+                ImpactAbility.Instance.impactAbility(this.gameObject);
             }
-
-            if (other.gameObject.CompareTag("Monster") && _bulletManager.bulletAbility != null)
+            
+            if (other.gameObject.CompareTag("Monster") && BulletAbility.Instance.bulletAbility != null)
             {
-                _bulletManager.bulletAbility(other.gameObject);
+                BulletAbility.Instance.bulletAbility(other.gameObject);
             }
 
             this.gameObject.SetActive(false);
