@@ -61,8 +61,6 @@ public class RangedMonster : MonoBehaviour, IMonster
 
     public void ShootFire()
     {
-        Debug.Log("Shoot!!!");
-        //_playerTransform
         GameObject bullet = _bulletManager.GetFireBall();
 
         if (bullet != null)
@@ -174,6 +172,9 @@ public class RangedMonster : MonoBehaviour, IMonster
         _navMeshAgent.isStopped = true;
         _navMeshAgent.velocity = Vector3.zero;
 
+        _leftHandFireParticle.SetActive(false);
+        _rightHandFireParticle.SetActive(false);
+
         GetComponent<CapsuleCollider>().enabled = false;
     }
 
@@ -220,6 +221,8 @@ public class RangedMonster : MonoBehaviour, IMonster
         // 추적 중지
         _navMeshAgent.isStopped = true;
         _navMeshAgent.velocity = Vector3.zero;
+
+        _leftHandFireParticle.SetActive(false);
     }
 
     public void Attack()
@@ -243,5 +246,7 @@ public class RangedMonster : MonoBehaviour, IMonster
         // 추적 시작
         _navMeshAgent.isStopped = false;
         _navMeshAgent.destination = _playerTransform.position;
+
+        _leftHandFireParticle.SetActive(false);
     }
 }

@@ -29,6 +29,7 @@ public class PlayerInfo : MonoBehaviour, IPlayer
 
     public void GetDamage(float damage, GameObject attacker)
     {
+        Debug.Log($"Player GetDamage !!! CurrentHp : {currentHp}");
         if(HitAbility.Instance.hitAbility != null /*&& attacker.CompareTag("Monster") == true*/)
         {
             HitAbility.Instance.hitAbility(attacker);
