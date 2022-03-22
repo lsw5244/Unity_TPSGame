@@ -9,6 +9,10 @@ public class BulletManager : MonoBehaviour
     private GameObject[] _bulletPool = new GameObject[10];
 
     [SerializeField]
+    private GameObject _fireBall;
+    private GameObject[] _fireBallPool = new GameObject[10];
+
+    [SerializeField]
     private PlayerInfo _playerInfo;
 
     private void Awake()
@@ -16,16 +20,11 @@ public class BulletManager : MonoBehaviour
         for(int i = 0; i < 10; ++i)
         {
             _bulletPool[i] = Instantiate(_bullet, Vector3.zero, Quaternion.identity);
-            _bulletPool[i].GetComponent<Bullet>().bulletManager = this;
+            _fireBallPool[i] = Instantiate(_fireBall, Vector3.zero, Quaternion.identity);
+
             _bulletPool[i].SetActive(false);
+            _fireBallPool[i].SetActive(false);
         }
-    }
-
-    private void Update()
-    {
-
-
-        
     }
 
     public GameObject GetBullet()
@@ -35,6 +34,19 @@ public class BulletManager : MonoBehaviour
             if(_bulletPool[i].activeSelf == false)
             {
                 return _bulletPool[i];
+            }
+        }
+
+        return null;
+    }
+
+    public GameObject GetFireBall()
+    {
+        for (int i = 0; i < 10; ++i)
+        {
+            if (_fireBallPool[i].activeSelf == false)
+            {
+                return _fireBallPool[i];
             }
         }
 

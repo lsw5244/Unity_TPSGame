@@ -42,6 +42,13 @@ public class RangedMonster : MonoBehaviour, IMonster
     [SerializeField]
     private GameObject _rightHandFireParticle;
 
+    [SerializeField]
+    private BulletManager _bulletManager;
+    [SerializeField]
+    private Transform _fireTransform;
+    [SerializeField]
+    private float _firePower = 1000f;
+
     public void TurnOnAttackFire()
     {
         _leftHandFireParticle.SetActive(true);
@@ -55,6 +62,20 @@ public class RangedMonster : MonoBehaviour, IMonster
     public void ShootFire()
     {
         Debug.Log("Shoot!!!");
+        //_playerTransform
+        GameObject bullet = _bulletManager.GetFireBall();
+
+        if (bullet != null)
+        {
+            bullet.transform.position = _fireTransform.position;
+            bullet.transform.rotation = transform.rotation;
+            bullet.SetActive(true);
+
+            bullet.GetComponent<Rigidbody>().velocity = Vector3.zero;
+
+            Vector3 shootDirection = (_playerTransform.transform.position - transform.position).normalized;
+            bullet.GetComponent<Rigidbody>().AddForce(shootDirection * _firePower);
+        }
     }
 
     void Start()

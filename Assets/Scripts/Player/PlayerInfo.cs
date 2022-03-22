@@ -29,7 +29,7 @@ public class PlayerInfo : MonoBehaviour, IPlayer
 
     public void GetDamage(float damage, GameObject attacker)
     {
-        if(HitAbility.Instance.hitAbility != null)
+        if(HitAbility.Instance.hitAbility != null /*&& attacker.CompareTag("Monster") == true*/)
         {
             HitAbility.Instance.hitAbility(attacker);
         }
