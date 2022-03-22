@@ -94,7 +94,6 @@ public class MeleeMonster : MonoBehaviour, IMonster
 
             yield return new WaitForSeconds(0.3f);
         }
-
     }
 
     public void GetDamage(float damage)

@@ -32,7 +32,15 @@ public class RangedMonster : MonoBehaviour, IMonster
     private bool _attentionModeTrigger = false;
     private bool _continueAttentionMode = false;
 
+    public float traceDistance = 16f;
+    public float attackDistance = 8f;
+
     private State _currentState = State.Idle;
+
+    [SerializeField]
+    private GameObject _leftHandFireParticle;
+    [SerializeField]
+    private GameObject _rightHandFireParticle;
 
     void Start()
     {
@@ -42,15 +50,51 @@ public class RangedMonster : MonoBehaviour, IMonster
         currentHp = _maxHP;
 
         _playerTransform = GameObject.Find("Player").transform;/* Find("Player");*/
+        StartCoroutine(TraceCheck());
     }
 
-    void Update()
+    IEnumerator TraceCheck()
     {
-        
+        while (_isAlive == true)
+        {
+            float distance = Vector3.Distance(transform.position, _playerTransform.position);
+
+            if (distance < attackDistance)
+            {
+                _currentState = State.Attack;
+            }
+            else if (distance < traceDistance)
+            {
+                _currentState = State.Trace;
+            }
+            else
+            {
+                _currentState = State.Idle;
+            }
+
+            switch (_currentState)
+            {
+                case State.Attack:
+                    Attack();
+                    break;
+                case State.Trace:
+                    Trace();
+                    break;
+                case State.Idle:
+                    Idle();
+                    break;
+            }
+
+            if (_animator.GetCurrentAnimatorStateInfo(0).IsName("hit") == true)
+            {
+                _navMeshAgent.velocity = Vector3.zero;
+            }
+
+            yield return new WaitForSeconds(0.3f);
+        }
     }
 
-
-    public void Attack()
+    public void PoisonEffect(float damage)
     {
         throw new System.NotImplementedException();
     }
@@ -67,16 +111,33 @@ public class RangedMonster : MonoBehaviour, IMonster
 
     public void Idle()
     {
-        throw new System.NotImplementedException();
+        // 애니메이션 변경
+        _animator.SetBool("Trace", false);
+        // 추적 중지
+        _navMeshAgent.isStopped = true;
+        _navMeshAgent.velocity = Vector3.zero;
     }
 
-    public void PoisonEffect(float damage)
+    public void Attack()
     {
-        throw new System.NotImplementedException();
+        // 애니메이션 변경
+        _animator.SetBool("Trace", true);
+        _animator.SetBool("Attack", true);
+
+        transform.LookAt(_playerTransform.position);
+
+        // 추적 중지
+        _navMeshAgent.isStopped = true;
+        _navMeshAgent.velocity = Vector3.zero;
     }
 
     public void Trace()
     {
-        throw new System.NotImplementedException();
+        // 애니메이션 변경
+        _animator.SetBool("Attack", false);
+        _animator.SetBool("Trace", true);
+        // 추적 시작
+        _navMeshAgent.isStopped = false;
+        _navMeshAgent.destination = _playerTransform.position;
     }
 }

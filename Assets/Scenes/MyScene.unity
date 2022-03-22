@@ -13203,6 +13203,16 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4973117701365034, guid: a8be9f01144e2af499b282b2e273a5eb, type: 3}
   m_PrefabInstance: {fileID: 597732294}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &605624104 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 114774, guid: 62e917065ed4cb34a9f31810db74f2c9, type: 3}
+  m_PrefabInstance: {fileID: 1604292581}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &605624105 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 461720, guid: 62e917065ed4cb34a9f31810db74f2c9, type: 3}
+  m_PrefabInstance: {fileID: 1604292581}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &613672769
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -27859,6 +27869,63 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!1001 &1604292581
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 7957296031757213438}
+    m_Modifications:
+    - target: {fileID: 114774, guid: 62e917065ed4cb34a9f31810db74f2c9, type: 3}
+      propertyPath: m_Name
+      value: PoisonEffect
+      objectReference: {fileID: 0}
+    - target: {fileID: 461720, guid: 62e917065ed4cb34a9f31810db74f2c9, type: 3}
+      propertyPath: m_RootOrder
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 461720, guid: 62e917065ed4cb34a9f31810db74f2c9, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 461720, guid: 62e917065ed4cb34a9f31810db74f2c9, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 461720, guid: 62e917065ed4cb34a9f31810db74f2c9, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 461720, guid: 62e917065ed4cb34a9f31810db74f2c9, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 461720, guid: 62e917065ed4cb34a9f31810db74f2c9, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 461720, guid: 62e917065ed4cb34a9f31810db74f2c9, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 461720, guid: 62e917065ed4cb34a9f31810db74f2c9, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 461720, guid: 62e917065ed4cb34a9f31810db74f2c9, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: -90
+      objectReference: {fileID: 0}
+    - target: {fileID: 461720, guid: 62e917065ed4cb34a9f31810db74f2c9, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 461720, guid: 62e917065ed4cb34a9f31810db74f2c9, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 62e917065ed4cb34a9f31810db74f2c9, type: 3}
 --- !u!1001 &1606241798
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -40036,6 +40103,7 @@ Transform:
   - {fileID: 7958784212833824152}
   - {fileID: 7957269991461136956}
   - {fileID: 7957132863642326918}
+  - {fileID: 605624105}
   m_Father: {fileID: 0}
   m_RootOrder: 23
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -41073,6 +41141,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0237331c66812334ababd349cf3c4280, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _maxHP: 100
+  currentHp: 0
+  attackPower: 10
+  _poisonParicle: {fileID: 605624104}
+  poisonDamageDelay: 0.5
+  poisonDamageCount: 5
+  traceDistance: 16
+  attackDistance: 8
 --- !u!1 &7960972720459473520
 GameObject:
   m_ObjectHideFlags: 0
