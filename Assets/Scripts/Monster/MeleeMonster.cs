@@ -8,7 +8,7 @@ public class MeleeMonster : MonoBehaviour, IMonster
 {
     enum State
     {
-        Idle, Trace, Attack, Die
+        Idle, Trace, Attack
     }
     private Animator _animator;
     private NavMeshAgent _navMeshAgent;
@@ -203,7 +203,7 @@ public class MeleeMonster : MonoBehaviour, IMonster
         _navMeshAgent.velocity = Vector3.zero;
     }
 
-    void Idle()
+    public void Idle()
     {
         // 애니메이션 변경
         _animator.SetBool("Trace", false);
@@ -212,7 +212,7 @@ public class MeleeMonster : MonoBehaviour, IMonster
         _navMeshAgent.velocity = Vector3.zero;
     }
 
-    void Trace()
+    public void Trace()
     {
         // 애니메이션 변경
         _animator.SetBool("Attack", false);
