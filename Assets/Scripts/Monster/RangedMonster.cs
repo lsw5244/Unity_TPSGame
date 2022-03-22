@@ -143,7 +143,38 @@ public class RangedMonster : MonoBehaviour, IMonster
 
     public void GetDamage(float damage)
     {
-        throw new System.NotImplementedException();
+        if (_isAlive == false)
+            return;
+
+        _continueAttentionMode = true;
+
+        if (_attentionModeTrigger == false)
+        {
+            _attentionModeTrigger = true;
+            StartCoroutine(AttentionMode());
+        }
+
+        _animator.SetTrigger("Hit");
+        currentHp -= damage;
+        if (currentHp <= 0f)
+        {
+            Die();
+        }
+    }
+
+    IEnumerator AttentionMode()
+    {
+        traceDistance *= 2f;
+
+        while (_continueAttentionMode == true)
+        {
+            _continueAttentionMode = false;
+
+            yield return new WaitForSeconds(5f);
+        }
+
+        _attentionModeTrigger = false;
+        traceDistance /= 2f;
     }
 
     public void Idle()

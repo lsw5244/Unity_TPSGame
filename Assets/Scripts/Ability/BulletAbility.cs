@@ -58,13 +58,10 @@ public class BulletAbility : MonoBehaviour
     void HitTarget(GameObject target)
     {
         target.GetComponent<IMonster>().GetDamage(bulletDamage);
-
-        Debug.Log($"{target.name} Hit!!!");
     }
 
     void PoisonBullet(GameObject target)
     {
         target.GetComponent<IMonster>().PoisonEffect(poisonDamage);
-        Debug.Log($"{target.name} Poison!!!!!");
     }
 }
