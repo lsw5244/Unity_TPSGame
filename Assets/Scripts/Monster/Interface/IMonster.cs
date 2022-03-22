@@ -8,4 +8,8 @@ public interface IMonster
     void PoisonEffect(float damage);
 
     void Attack();
+
+    void Trace();
+
+    void Idle();
 }

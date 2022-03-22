@@ -13,6 +13,7 @@
 /[Aa]ssets/[Pp]olygon[Nn]ature/
 /[Aa]ssets/[Pp]olygon[Ff]antasy[Rr]ivals/
 /[Aa]ssets/[Ww]erewolf_[Aa]nimset/
+/[Aa]ssets/[Ss]cript_[Ww]izard_[Aa]nimSet/
 
 # Asset meta data should only be ignored when the corresponding asset is also ignored
 !/[Aa]ssets/**/*.meta

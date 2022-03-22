@@ -60,7 +60,7 @@ public class PlayerFire : MonoBehaviour
         }
     }
 
-    void ShootBullet(Vector3 shootDistance)
+    void ShootBullet(Vector3 shootDirection)
     {
         GameObject bullet = _bulletManager.GetBullet();
 
@@ -71,7 +71,7 @@ public class PlayerFire : MonoBehaviour
             bullet.SetActive(true);
 
             bullet.GetComponent<Rigidbody>().velocity = Vector3.zero;
-            bullet.GetComponent<Rigidbody>().AddForce(shootDistance * _firePower);
+            bullet.GetComponent<Rigidbody>().AddForce(shootDirection * _firePower);
         }
     }
 

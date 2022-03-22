@@ -4,12 +4,6 @@ using UnityEngine;
 
 public class Bullet : MonoBehaviour
 {
-    private BulletManager _bulletManager;
-    public BulletManager bulletManager
-    {
-        set { _bulletManager = value; }
-    }
-
     private void OnTriggerEnter(Collider other)
     {
         // 플레이어 이외의 오브젝트와 충돌 했을 때 처리

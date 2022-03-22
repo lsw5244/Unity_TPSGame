@@ -71,4 +71,14 @@ public class DebugMonster : MonoBehaviour, IMonster
     {
         throw new System.NotImplementedException();
     }
+
+    public void Trace()
+    {
+        throw new System.NotImplementedException();
+    }
+
+    public void Idle()
+    {
+        throw new System.NotImplementedException();
+    }
 }

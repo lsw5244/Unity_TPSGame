@@ -8,7 +8,7 @@ public class MeleeMonster : MonoBehaviour, IMonster
 {
     enum State
     {
-        Idle, Trace, Attack, Die
+        Idle, Trace, Attack
     }
     private Animator _animator;
     private NavMeshAgent _navMeshAgent;
@@ -33,8 +33,8 @@ public class MeleeMonster : MonoBehaviour, IMonster
     private bool _attentionModeTrigger = false;
     private bool _continueAttentionMode = false;
 
-    public float traceDistance = 5f;
-    public float attackDistance = 3f;
+    public float traceDistance = 8f;
+    public float attackDistance = 2f;
 
     private State _currentState = State.Idle;
 
@@ -94,7 +94,6 @@ public class MeleeMonster : MonoBehaviour, IMonster
 
             yield return new WaitForSeconds(0.3f);
         }
-
     }
 
     public void GetDamage(float damage)
@@ -203,7 +202,7 @@ public class MeleeMonster : MonoBehaviour, IMonster
         _navMeshAgent.velocity = Vector3.zero;
     }
 
-    void Idle()
+    public void Idle()
     {
         // 애니메이션 변경
         _animator.SetBool("Trace", false);
@@ -212,7 +211,7 @@ public class MeleeMonster : MonoBehaviour, IMonster
         _navMeshAgent.velocity = Vector3.zero;
     }
 
-    void Trace()
+    public void Trace()
     {
         // 애니메이션 변경
         _animator.SetBool("Attack", false);
