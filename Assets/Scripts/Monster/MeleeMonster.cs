@@ -33,8 +33,8 @@ public class MeleeMonster : MonoBehaviour, IMonster
     private bool _attentionModeTrigger = false;
     private bool _continueAttentionMode = false;
 
-    public float traceDistance = 5f;
-    public float attackDistance = 3f;
+    public float traceDistance = 8f;
+    public float attackDistance = 2f;
 
     private State _currentState = State.Idle;
 
