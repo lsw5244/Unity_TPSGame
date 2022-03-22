@@ -34853,7 +34853,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1818508905244073043
 Transform:
   m_ObjectHideFlags: 0
@@ -41149,8 +41149,8 @@ MonoBehaviour:
   poisonDamageCount: 5
   traceDistance: 16
   attackDistance: 8
-  _leftHandFireParticle: {fileID: 0}
-  _rightHandFireParticle: {fileID: 0}
+  _leftHandFireParticle: {fileID: 1813225681278250211}
+  _rightHandFireParticle: {fileID: 466326283}
 --- !u!1 &7960972720459473520
 GameObject:
   m_ObjectHideFlags: 0

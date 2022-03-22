@@ -11,12 +11,6 @@ public class BulletManager : MonoBehaviour
     [SerializeField]
     private PlayerInfo _playerInfo;
 
-    //public delegate void ImpactAbilityDelegate(GameObject bullet);
-    //public ImpactAbilityDelegate impactAbility;
-
-    //public delegate void BulletAbilityDeleage(GameObject target);
-    //public BulletAbilityDeleage bulletAbility;
-
     private void Awake()
     {
         for(int i = 0; i < 10; ++i)

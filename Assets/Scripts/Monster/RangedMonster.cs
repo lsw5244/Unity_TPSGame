@@ -42,6 +42,21 @@ public class RangedMonster : MonoBehaviour, IMonster
     [SerializeField]
     private GameObject _rightHandFireParticle;
 
+    public void TurnOnAttackFire()
+    {
+        _leftHandFireParticle.SetActive(true);
+    }
+
+    public void TurnOffAttackFire()
+    {
+        _leftHandFireParticle.SetActive(false);
+    }
+
+    public void ShootFire()
+    {
+        Debug.Log("Shoot!!!");
+    }
+
     void Start()
     {
         _animator = GetComponent<Animator>();
