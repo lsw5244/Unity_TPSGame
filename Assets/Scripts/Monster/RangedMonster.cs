@@ -96,12 +96,49 @@ public class RangedMonster : MonoBehaviour, IMonster
 
     public void PoisonEffect(float damage)
     {
-        throw new System.NotImplementedException();
+        poisonDamageCount = 5;
+
+        if (_isPoisonState == false)
+        {
+            StartCoroutine(Poison(damage));
+        }
+    }
+
+    IEnumerator Poison(float damage)
+    {
+        _poisonParicle.SetActive(true);
+        _isPoisonState = true;
+
+        while (poisonDamageCount > 0)
+        {
+            currentHp -= damage;
+            if (currentHp <= 0f)
+            {
+                Die();
+            }
+
+            yield return new WaitForSeconds(poisonDamageDelay);     // 0.5초에 한 번씩 실행되도록
+
+            poisonDamageCount--;
+        }
+
+        _isPoisonState = false;
+        _poisonParicle.SetActive(false);
     }
 
     public void Die()
     {
-        throw new System.NotImplementedException();
+        _isAlive = false;
+
+        StopAllCoroutines();
+        _poisonParicle.SetActive(false);
+
+        _animator.SetTrigger("Die");
+
+        _navMeshAgent.isStopped = true;
+        _navMeshAgent.velocity = Vector3.zero;
+
+        GetComponent<CapsuleCollider>().enabled = false;
     }
 
     public void GetDamage(float damage)
