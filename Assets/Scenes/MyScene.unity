@@ -31563,7 +31563,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bulletDamage: 25
-  poisonDamage: 20
+  poisonDamage: 10
 --- !u!1001 &1872459132
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -41149,6 +41149,8 @@ MonoBehaviour:
   poisonDamageCount: 5
   traceDistance: 16
   attackDistance: 8
+  _leftHandFireParticle: {fileID: 0}
+  _rightHandFireParticle: {fileID: 0}
 --- !u!1 &7960972720459473520
 GameObject:
   m_ObjectHideFlags: 0
