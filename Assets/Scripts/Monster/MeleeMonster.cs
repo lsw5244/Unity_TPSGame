@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.AI;
 
 
-public class MeleeMonster : MonoBehaviour, IMonster
+public class MeleeMonster : Monster, IMonster
 {
     enum State
     {
