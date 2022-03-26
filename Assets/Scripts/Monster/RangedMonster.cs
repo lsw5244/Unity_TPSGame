@@ -134,7 +134,7 @@ public class RangedMonster : Monster, IMonster
         _poisonParicle.SetActive(false);
     }
 
-    public void Die()
+    public override void Die()
     {
         _isAlive = false;
 
@@ -188,7 +188,7 @@ public class RangedMonster : Monster, IMonster
         traceDistance /= 2f;
     }
 
-    public void Idle()
+    public override void Idle()
     {
         // 애니메이션 변경
         _animator.SetBool("Trace", false);
@@ -199,7 +199,19 @@ public class RangedMonster : Monster, IMonster
         _leftHandFireParticle.SetActive(false);
     }
 
-    public void Attack()
+    public override void Trace()
+    {
+        // 애니메이션 변경
+        _animator.SetBool("Attack", false);
+        _animator.SetBool("Trace", true);
+        // 추적 시작
+        _navMeshAgent.isStopped = false;
+        _navMeshAgent.destination = _playerTransform.position;
+
+        _leftHandFireParticle.SetActive(false);
+    }
+
+    public override void Attack()
     {
         // 애니메이션 변경
         _animator.SetBool("Trace", true);
@@ -210,17 +222,5 @@ public class RangedMonster : Monster, IMonster
         // 추적 중지
         _navMeshAgent.isStopped = true;
         _navMeshAgent.velocity = Vector3.zero;
-    }
-
-    public void Trace()
-    {
-        // 애니메이션 변경
-        _animator.SetBool("Attack", false);
-        _animator.SetBool("Trace", true);
-        // 추적 시작
-        _navMeshAgent.isStopped = false;
-        _navMeshAgent.destination = _playerTransform.position;
-
-        _leftHandFireParticle.SetActive(false);
     }
 }

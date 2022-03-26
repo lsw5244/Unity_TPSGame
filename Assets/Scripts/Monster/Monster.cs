@@ -2,13 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Monster : MonoBehaviour
+public abstract class Monster : MonoBehaviour
 {
     public enum State
     {
         Idle, Trace, Attack
     }
-
+    
     [SerializeField]
     protected float _maxHP = 100f;
     [HideInInspector]
@@ -32,4 +32,8 @@ public class Monster : MonoBehaviour
 
     protected Transform _playerTransform;
 
+    public abstract void Idle();
+    public abstract void Trace();
+    public abstract void Attack();
+    public abstract void Die();
 }
