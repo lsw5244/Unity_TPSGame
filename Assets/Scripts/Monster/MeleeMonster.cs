@@ -6,37 +6,11 @@ using UnityEngine.AI;
 
 public class MeleeMonster : Monster, IMonster
 {
-    enum State
-    {
-        Idle, Trace, Attack
-    }
     private Animator _animator;
     private NavMeshAgent _navMeshAgent;
     private BoxCollider _attackCollider;
 
-    [SerializeField]
-    private float _maxHP = 100f;
-    [HideInInspector]
-    public float currentHp;
     public float attackPower = 10f;
-
-    private bool _isPoisonState = false;
-    public float poisonDamageDelay = 0.5f;
-    public int poisonDamageCount = 5;
-
-    [SerializeField]
-    private GameObject _poisonParicle;
-
-    private Transform _playerTransform;
-
-    private bool _isAlive = true;
-    private bool _attentionModeTrigger = false;
-    private bool _continueAttentionMode = false;
-
-    public float traceDistance = 8f;
-    public float attackDistance = 2f;
-
-    private State _currentState = State.Idle;
 
     void Start()
     {

@@ -6,36 +6,10 @@ using UnityEngine.AI;
 
 public class RangedMonster : Monster, IMonster
 {
-    enum State
-    {
-        Idle, Trace, Attack
-    }
     private Animator _animator;
     private NavMeshAgent _navMeshAgent;
 
-    [SerializeField]
-    private float _maxHP = 100f;
-    [HideInInspector]
-    public float currentHp;
     public float attackPower = 10f;
-
-    [SerializeField]
-    private GameObject _poisonParicle;
-    private bool _isPoisonState = false;
-    public float poisonDamageDelay = 0.5f;
-    public int poisonDamageCount = 5;
-
-    private Transform _playerTransform;
-
-    private bool _isAlive = true;
-
-    private bool _attentionModeTrigger = false;
-    private bool _continueAttentionMode = false;
-
-    public float traceDistance = 16f;
-    public float attackDistance = 8f;
-
-    private State _currentState = State.Idle;
 
     [SerializeField]
     private GameObject _leftHandFireParticle;

@@ -4,15 +4,32 @@ using UnityEngine;
 
 public class Monster : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    public enum State
     {
-        
+        Idle, Trace, Attack
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    [SerializeField]
+    protected float _maxHP = 100f;
+    [HideInInspector]
+    public float currentHp;
+
+    [SerializeField]
+    protected GameObject _poisonParicle;
+    protected bool _isPoisonState = false;
+    public float poisonDamageDelay = 0.5f;
+    public int poisonDamageCount = 5;
+    
+    public float traceDistance = 16f;
+    public float attackDistance = 8f;
+
+    protected State _currentState = State.Idle;
+
+    protected bool _isAlive = true;
+
+    protected bool _attentionModeTrigger = false;
+    protected bool _continueAttentionMode = false;
+
+    protected Transform _playerTransform;
+
 }
