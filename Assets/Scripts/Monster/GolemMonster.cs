@@ -141,7 +141,34 @@ public class GolemMonster : Monster, IMonster
 
     public void PoisonEffect(float damage)
     {
-        //throw new System.NotImplementedException();
+        poisonDamageCount = 5;
+
+        if (_isPoisonState == false)
+        {
+            StartCoroutine(Poison(damage));
+        }
+    }
+
+    IEnumerator Poison(float damage)
+    {
+        _poisonParicle.SetActive(true);
+        _isPoisonState = true;
+
+        while (poisonDamageCount > 0)
+        {
+            currentHp -= damage;
+            if (currentHp <= 0f)
+            {
+                Die();
+            }
+
+            yield return new WaitForSeconds(poisonDamageDelay);     // 0.5초에 한 번씩 실행되도록
+
+            poisonDamageCount--;
+        }
+
+        _isPoisonState = false;
+        _poisonParicle.SetActive(false);
     }
 
     public override void Trace()
