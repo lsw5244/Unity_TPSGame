@@ -4228,6 +4228,87 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4898071424285268, guid: 55305678b9bd1fb498528a0255154adb, type: 3}
   m_PrefabInstance: {fileID: 295853817}
   m_PrefabAsset: {fileID: 0}
+--- !u!1001 &296814640
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 505496427331404386, guid: 3176cf7eccca5ae4da50a62603b3c09b, type: 3}
+      propertyPath: m_RootOrder
+      value: 28
+      objectReference: {fileID: 0}
+    - target: {fileID: 505496427331404386, guid: 3176cf7eccca5ae4da50a62603b3c09b, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 505496427331404386, guid: 3176cf7eccca5ae4da50a62603b3c09b, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 505496427331404386, guid: 3176cf7eccca5ae4da50a62603b3c09b, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 505496427331404386, guid: 3176cf7eccca5ae4da50a62603b3c09b, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 505496427331404386, guid: 3176cf7eccca5ae4da50a62603b3c09b, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 505496427331404386, guid: 3176cf7eccca5ae4da50a62603b3c09b, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 505496427331404386, guid: 3176cf7eccca5ae4da50a62603b3c09b, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 505496427331404386, guid: 3176cf7eccca5ae4da50a62603b3c09b, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 505496427331404386, guid: 3176cf7eccca5ae4da50a62603b3c09b, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 505496427331404386, guid: 3176cf7eccca5ae4da50a62603b3c09b, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3237278831576458994, guid: 3176cf7eccca5ae4da50a62603b3c09b, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 3237278831576458994, guid: 3176cf7eccca5ae4da50a62603b3c09b, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 3237278831576458994, guid: 3176cf7eccca5ae4da50a62603b3c09b, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 7326310408877064554, guid: 3176cf7eccca5ae4da50a62603b3c09b, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 7326310408877064554, guid: 3176cf7eccca5ae4da50a62603b3c09b, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 7326310408877064554, guid: 3176cf7eccca5ae4da50a62603b3c09b, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 7655736981211710703, guid: 3176cf7eccca5ae4da50a62603b3c09b, type: 3}
+      propertyPath: m_Name
+      value: GroundPunchParticle
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 3176cf7eccca5ae4da50a62603b3c09b, type: 3}
 --- !u!1001 &306852215
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -35381,6 +35462,7 @@ MonoBehaviour:
   traceDistance: 16
   attackDistance: 3.5
   attackPower: 10
+  _groundHitParicle: {fileID: 8635633004241265601, guid: f1d3b140b98fd7444a0c68ad1605f0bd, type: 3}
 --- !u!65 &2752250333963899826
 BoxCollider:
   m_ObjectHideFlags: 0

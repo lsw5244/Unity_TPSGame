@@ -167,6 +167,7 @@ public class MeleeMonster : Monster, IMonster
     {
         // 애니메이션 변경
         _animator.SetBool("Attack", false);
+        StopAttack();
         _animator.SetBool("Trace", true);
 
         if(_animator.GetCurrentAnimatorStateInfo(0).IsName("attack") == false)

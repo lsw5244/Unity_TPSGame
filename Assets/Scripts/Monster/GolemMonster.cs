@@ -11,6 +11,9 @@ public class GolemMonster : Monster, IMonster
 
     public float attackPower = 10f;
 
+    [SerializeField]
+    private GameObject _groundHitParicle;
+
     void Start()
     {
         currentHp = _maxHP;
@@ -22,6 +25,15 @@ public class GolemMonster : Monster, IMonster
 
         _playerTransform = GameObject.Find("Player").transform;/* Find("Player");*/
         StartCoroutine(TraceCheck());
+    }
+
+    void Update()
+    {
+        if(Input.GetKeyDown(KeyCode.B))
+        {
+            Instantiate(_groundHitParicle, transform.position, Quaternion.identity);
+        }
+
     }
 
     IEnumerator TraceCheck()
@@ -75,6 +87,16 @@ public class GolemMonster : Monster, IMonster
         // 추적 중지
         _navMeshAgent.isStopped = true;
         _navMeshAgent.velocity = Vector3.zero;
+    }
+
+    public void StartAttack()
+    {
+        _attackCollider.enabled = true;
+    }
+
+    public void StopAttack()
+    {
+        _attackCollider.enabled = false;
     }
 
     public override void Die()
@@ -175,6 +197,7 @@ public class GolemMonster : Monster, IMonster
     {
         // 애니메이션 변경
         _animator.SetBool("Attack", false);
+        StopAttack();
         _animator.SetBool("Trace", true);
 
         if (_animator.GetCurrentAnimatorStateInfo(0).IsName("attack") == false)
@@ -182,6 +205,15 @@ public class GolemMonster : Monster, IMonster
             // 추적 시작
             _navMeshAgent.isStopped = false;
             _navMeshAgent.destination = _playerTransform.position;
+        }
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Player") == true)
+        {
+            other.GetComponent<IPlayer>()?.GetDamage(attackPower, this.gameObject);
+            _attackCollider.enabled = false;
         }
     }
 }
