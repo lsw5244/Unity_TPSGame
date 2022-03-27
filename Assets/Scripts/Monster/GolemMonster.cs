@@ -79,12 +79,55 @@ public class GolemMonster : Monster, IMonster
 
     public override void Die()
     {
-        //throw new System.NotImplementedException();
+        _isAlive = false;
+
+        StopAllCoroutines();
+        _poisonParicle.SetActive(false);
+
+        _animator.SetTrigger("Die");
+
+        _navMeshAgent.isStopped = true;
+        _navMeshAgent.velocity = Vector3.zero;
+
+        GetComponent<CapsuleCollider>().enabled = false;
+        _attackCollider.enabled = false;
     }
 
     public void GetDamage(float damage)
     {
-        //throw new System.NotImplementedException();
+        if (_isAlive == false)
+            return;
+
+        _continueAttentionMode = true;
+
+        if (_attentionModeTrigger == false)
+        {
+            _attentionModeTrigger = true;
+            StartCoroutine(AttentionMode());
+        }
+
+//      _animator.SetTrigger("Hit");
+        currentHp -= damage;
+        if (currentHp <= 0f)
+        {
+            Die();
+        }
+        //Debug.Log($"Golem HP : {currentHp}");
+    }
+
+    IEnumerator AttentionMode()
+    {
+        traceDistance *= 2f;
+
+        while (_continueAttentionMode == true)
+        {
+            _continueAttentionMode = false;
+
+            yield return new WaitForSeconds(5f);
+        }
+
+        _attentionModeTrigger = false;
+        traceDistance /= 2f;
     }
 
     public override void Idle()
