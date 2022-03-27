@@ -168,9 +168,13 @@ public class MeleeMonster : Monster, IMonster
         // 애니메이션 변경
         _animator.SetBool("Attack", false);
         _animator.SetBool("Trace", true);
-        // 추적 시작
-        _navMeshAgent.isStopped = false;
-        _navMeshAgent.destination = _playerTransform.position;
+
+        if(_animator.GetCurrentAnimatorStateInfo(0).IsName("attack") == false)
+        {
+            // 추적 시작
+            _navMeshAgent.isStopped = false;
+            _navMeshAgent.destination = _playerTransform.position;
+        }
     }
 
     public override void Attack()
@@ -182,7 +186,7 @@ public class MeleeMonster : Monster, IMonster
 
         // 추적 중지
         _navMeshAgent.isStopped = true;
-        _navMeshAgent.velocity = Vector3.zero;
+        //_navMeshAgent.velocity = Vector3.zero;
     }
 
     public void StartAttack()

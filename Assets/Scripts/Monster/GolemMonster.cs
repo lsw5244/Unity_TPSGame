@@ -67,7 +67,14 @@ public class GolemMonster : Monster, IMonster
 
     public override void Attack()
     {
-        //throw new System.NotImplementedException();
+        // 애니메이션 변경
+        _animator.SetBool("Attack", true);
+
+        transform.LookAt(_playerTransform.position);
+
+        // 추적 중지
+        _navMeshAgent.isStopped = true;
+        _navMeshAgent.velocity = Vector3.zero;
     }
 
     public override void Die()
@@ -82,7 +89,11 @@ public class GolemMonster : Monster, IMonster
 
     public override void Idle()
     {
-        //throw new System.NotImplementedException();
+        // 애니메이션 변경
+        _animator.SetBool("Trace", false);
+        // 추적 중지
+        _navMeshAgent.isStopped = true;
+        _navMeshAgent.velocity = Vector3.zero;
     }
 
     public void PoisonEffect(float damage)
@@ -92,6 +103,15 @@ public class GolemMonster : Monster, IMonster
 
     public override void Trace()
     {
-        //throw new System.NotImplementedException();
+        // 애니메이션 변경
+        _animator.SetBool("Attack", false);
+        _animator.SetBool("Trace", true);
+
+        if (_animator.GetCurrentAnimatorStateInfo(0).IsName("attack") == false)
+        {
+            // 추적 시작
+            _navMeshAgent.isStopped = false;
+            _navMeshAgent.destination = _playerTransform.position;
+        }
     }
 }

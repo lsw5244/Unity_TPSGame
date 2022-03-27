@@ -35349,12 +35349,14 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2754406342255804094}
-  - component: {fileID: 2752250333963899826}
   - component: {fileID: 2838174993239666170}
+  - component: {fileID: 2752250333963899828}
+  - component: {fileID: 2752250333963899827}
+  - component: {fileID: 2752250333963899826}
   - component: {fileID: 2752250333963899825}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: GolemMonster
-  m_TagString: Untagged
+  m_TagString: Monster
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -35377,7 +35379,7 @@ MonoBehaviour:
   poisonDamageDelay: 0.5
   poisonDamageCount: 5
   traceDistance: 16
-  attackDistance: 8
+  attackDistance: 3.5
   attackPower: 10
 --- !u!65 &2752250333963899826
 BoxCollider:
@@ -35392,6 +35394,42 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!136 &2752250333963899827
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2752250333963899824}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.5
+  m_Height: 2
+  m_Direction: 1
+  m_Center: {x: 0, y: 1, z: 0}
+--- !u!195 &2752250333963899828
+NavMeshAgent:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2752250333963899824}
+  m_Enabled: 1
+  m_AgentTypeID: 0
+  m_Radius: 0.5
+  m_Speed: 2
+  m_Acceleration: 8
+  avoidancePriority: 50
+  m_AngularSpeed: 120
+  m_StoppingDistance: 0
+  m_AutoTraverseOffMeshLink: 1
+  m_AutoBraking: 1
+  m_AutoRepath: 1
+  m_Height: 2
+  m_BaseOffset: 0
+  m_WalkableMask: 4294967295
+  m_ObstacleAvoidanceType: 4
 --- !u!1 &2752262338984601180
 GameObject:
   m_ObjectHideFlags: 0
