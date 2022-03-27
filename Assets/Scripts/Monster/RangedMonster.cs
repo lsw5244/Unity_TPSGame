@@ -4,38 +4,12 @@ using UnityEngine;
 using UnityEngine.AI;
 
 
-public class RangedMonster : MonoBehaviour, IMonster
+public class RangedMonster : Monster, IMonster
 {
-    enum State
-    {
-        Idle, Trace, Attack
-    }
     private Animator _animator;
     private NavMeshAgent _navMeshAgent;
 
-    [SerializeField]
-    private float _maxHP = 100f;
-    [HideInInspector]
-    public float currentHp;
     public float attackPower = 10f;
-
-    [SerializeField]
-    private GameObject _poisonParicle;
-    private bool _isPoisonState = false;
-    public float poisonDamageDelay = 0.5f;
-    public int poisonDamageCount = 5;
-
-    private Transform _playerTransform;
-
-    private bool _isAlive = true;
-
-    private bool _attentionModeTrigger = false;
-    private bool _continueAttentionMode = false;
-
-    public float traceDistance = 16f;
-    public float attackDistance = 8f;
-
-    private State _currentState = State.Idle;
 
     [SerializeField]
     private GameObject _leftHandFireParticle;
@@ -160,7 +134,7 @@ public class RangedMonster : MonoBehaviour, IMonster
         _poisonParicle.SetActive(false);
     }
 
-    public void Die()
+    public override void Die()
     {
         _isAlive = false;
 
@@ -214,7 +188,7 @@ public class RangedMonster : MonoBehaviour, IMonster
         traceDistance /= 2f;
     }
 
-    public void Idle()
+    public override void Idle()
     {
         // 애니메이션 변경
         _animator.SetBool("Trace", false);
@@ -225,7 +199,19 @@ public class RangedMonster : MonoBehaviour, IMonster
         _leftHandFireParticle.SetActive(false);
     }
 
-    public void Attack()
+    public override void Trace()
+    {
+        // 애니메이션 변경
+        _animator.SetBool("Attack", false);
+        _animator.SetBool("Trace", true);
+        // 추적 시작
+        _navMeshAgent.isStopped = false;
+        _navMeshAgent.destination = _playerTransform.position;
+
+        _leftHandFireParticle.SetActive(false);
+    }
+
+    public override void Attack()
     {
         // 애니메이션 변경
         _animator.SetBool("Trace", true);
@@ -236,17 +222,5 @@ public class RangedMonster : MonoBehaviour, IMonster
         // 추적 중지
         _navMeshAgent.isStopped = true;
         _navMeshAgent.velocity = Vector3.zero;
-    }
-
-    public void Trace()
-    {
-        // 애니메이션 변경
-        _animator.SetBool("Attack", false);
-        _animator.SetBool("Trace", true);
-        // 추적 시작
-        _navMeshAgent.isStopped = false;
-        _navMeshAgent.destination = _playerTransform.position;
-
-        _leftHandFireParticle.SetActive(false);
     }
 }
