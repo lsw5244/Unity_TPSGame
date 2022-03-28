@@ -17,6 +17,8 @@ public class GolemMonster : Monster, IMonster
     [SerializeField]
     private float _dashAttackTurnSpeed = 15f;
 
+    private bool _isAwake = false;
+
     private bool _runningDashAttack = false;
 
     void Start()
@@ -30,22 +32,32 @@ public class GolemMonster : Monster, IMonster
 
         _playerTransform = GameObject.Find("Player").transform;/* Find("Player");*/
         StartCoroutine(TraceCheck());
+        StartCoroutine(DashAttackCheck());
     }
 
     void Update()
     {
         if(Input.GetKeyDown(KeyCode.B))
         {
-            //Instantiate(_groundHitParicle, transform.position, Quaternion.identity);
-            //StartDashAttack();
             _animator.SetTrigger("DashAttack");
         }
-
     }
     
+    IEnumerator DashAttackCheck()
+    {
+        while(true)
+        {
+            yield return new WaitForSeconds(10f);
+
+            if (_animator.GetCurrentAnimatorStateInfo(0).IsName("run") == true)
+            {
+                _animator.SetTrigger("DashAttack");
+            }
+        }        
+    }
+
     void StartDashAttack()
     {
-        Debug.Log("Start!!");
         _runningDashAttack = true;
         _navMeshAgent.enabled = false;
 
@@ -56,11 +68,10 @@ public class GolemMonster : Monster, IMonster
 
     void EndDashAttack()
     {
-        Debug.Log("End!!");
         _runningDashAttack = false;
         _navMeshAgent.enabled = true;
 
-        _attackCollider.enabled = false;
+        _attackCollider.enabled = true;
     }
 
     void DashAttack()
@@ -170,8 +181,9 @@ public class GolemMonster : Monster, IMonster
 
         _animator.SetTrigger("Die");
 
-        _navMeshAgent.isStopped = true;
-        _navMeshAgent.velocity = Vector3.zero;
+        _navMeshAgent.enabled = false;
+        //_navMeshAgent.isStopped = true;
+        //_navMeshAgent.velocity = Vector3.zero;
 
         GetComponent<CapsuleCollider>().enabled = false;
         _attackCollider.enabled = false;
@@ -190,13 +202,11 @@ public class GolemMonster : Monster, IMonster
             StartCoroutine(AttentionMode());
         }
 
-//      _animator.SetTrigger("Hit");
         currentHp -= damage;
         if (currentHp <= 0f)
         {
             Die();
         }
-        //Debug.Log($"Golem HP : {currentHp}");
     }
 
     IEnumerator AttentionMode()
