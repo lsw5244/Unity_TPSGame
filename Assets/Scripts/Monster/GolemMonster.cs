@@ -48,6 +48,9 @@ public class GolemMonster : Monster, IMonster
         Debug.Log("Start!!");
         _runningSpacialPattern = true;
         _navMeshAgent.enabled = false;
+
+        _attackCollider.enabled = true;
+
         transform.LookAt(_playerTransform);
     }
 
@@ -56,6 +59,8 @@ public class GolemMonster : Monster, IMonster
         Debug.Log("End!!");
         _runningSpacialPattern = false;
         _navMeshAgent.enabled = true;
+
+        _attackCollider.enabled = false;
     }
 
     void DashAttack()
@@ -86,25 +91,13 @@ public class GolemMonster : Monster, IMonster
             {
                 DashAttack();
             }
-
-            ChangeState();
-            
-            if(_runningSpacialPattern == false)
+            else
             {
-                switch (_currentState)
-                {
-                    case State.Attack:
-                        Attack();
-                        break;
-                    case State.Trace:
-                        Trace();
-                        break;
-                    case State.Idle:
-                        Idle();
-                        break;
-                }
-            }
+                ChangeState();
 
+                SelectAction();
+            }
+            
             yield return new WaitForSeconds(0.3f);
         }
     }
@@ -124,6 +117,25 @@ public class GolemMonster : Monster, IMonster
         else
         {
             _currentState = State.Idle;
+        }
+    }
+
+    void SelectAction()
+    {
+        if (_runningSpacialPattern == false)
+        {
+            switch (_currentState)
+            {
+                case State.Attack:
+                    Attack();
+                    break;
+                case State.Trace:
+                    Trace();
+                    break;
+                case State.Idle:
+                    Idle();
+                    break;
+            }
         }
     }
 
