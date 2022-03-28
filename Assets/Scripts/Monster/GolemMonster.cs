@@ -39,7 +39,7 @@ public class GolemMonster : Monster, IMonster
     {
         if(Input.GetKeyDown(KeyCode.B))
         {
-            _animator.SetTrigger("DashAttack");
+            _animator.SetTrigger("GroundAttack");
         }
     }
     
