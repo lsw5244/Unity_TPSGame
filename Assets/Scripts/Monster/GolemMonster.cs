@@ -31,7 +31,8 @@ public class GolemMonster : Monster, IMonster
     {
         if(Input.GetKeyDown(KeyCode.B))
         {
-            Instantiate(_groundHitParicle, transform.position, Quaternion.identity);
+            //Instantiate(_groundHitParicle, transform.position, Quaternion.identity);
+            _animator.SetTrigger("DashAttack");
         }
 
     }
