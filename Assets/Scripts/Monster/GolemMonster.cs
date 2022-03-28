@@ -17,7 +17,7 @@ public class GolemMonster : Monster, IMonster
     [SerializeField]
     private float _dashAttackTurnSpeed = 15f;
 
-    private bool _runningSpacialPattern = false;
+    private bool _runningDashAttack = false;
 
     void Start()
     {
@@ -46,7 +46,7 @@ public class GolemMonster : Monster, IMonster
     void StartDashAttack()
     {
         Debug.Log("Start!!");
-        _runningSpacialPattern = true;
+        _runningDashAttack = true;
         _navMeshAgent.enabled = false;
 
         _attackCollider.enabled = true;
@@ -57,7 +57,7 @@ public class GolemMonster : Monster, IMonster
     void EndDashAttack()
     {
         Debug.Log("End!!");
-        _runningSpacialPattern = false;
+        _runningDashAttack = false;
         _navMeshAgent.enabled = true;
 
         _attackCollider.enabled = false;
@@ -87,7 +87,7 @@ public class GolemMonster : Monster, IMonster
     {
         while (_isAlive == true)
         {
-            if(_runningSpacialPattern == true)
+            if(_runningDashAttack == true)
             {
                 DashAttack();
             }
@@ -122,7 +122,7 @@ public class GolemMonster : Monster, IMonster
 
     void SelectAction()
     {
-        if (_runningSpacialPattern == false)
+        if (_runningDashAttack == false)
         {
             switch (_currentState)
             {
