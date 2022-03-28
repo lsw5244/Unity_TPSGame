@@ -14,6 +14,11 @@ public class GolemMonster : Monster, IMonster
     [SerializeField]
     private GameObject _groundHitParicle;
 
+    [SerializeField]
+    private float _dashAttackTurnSpeed = 15f;
+
+    private bool _runningSpacialPattern = false;
+
     void Start()
     {
         currentHp = _maxHP;
@@ -32,49 +37,93 @@ public class GolemMonster : Monster, IMonster
         if(Input.GetKeyDown(KeyCode.B))
         {
             //Instantiate(_groundHitParicle, transform.position, Quaternion.identity);
+            //StartDashAttack();
             _animator.SetTrigger("DashAttack");
         }
 
+    }
+    
+    void StartDashAttack()
+    {
+        Debug.Log("Start!!");
+        _runningSpacialPattern = true;
+        _navMeshAgent.enabled = false;
+        transform.LookAt(_playerTransform);
+    }
+
+    void EndDashAttack()
+    {
+        Debug.Log("End!!");
+        _runningSpacialPattern = false;
+        _navMeshAgent.enabled = true;
+    }
+
+    void DashAttack()
+    {
+        Vector3 playerDistance = _playerTransform.position - transform.position;
+
+        // 앞에 있는지 확인
+        if(Vector3.Dot(transform.forward, playerDistance) < 0f)
+        {
+            return;
+        }
+        // 좌, 우 어느쪽에 있는지 확인
+        if(Vector3.Cross(transform.forward, playerDistance).y < 0f) // 왼쪽에 있을 때
+        {
+            transform.Rotate(0f, -_dashAttackTurnSpeed, 0f);
+        }
+        else  // 오른쪽에 있을 때
+        {
+            transform.Rotate(0f, _dashAttackTurnSpeed, 0f);
+        }
     }
 
     IEnumerator TraceCheck()
     {
         while (_isAlive == true)
         {
-            float distance = Vector3.Distance(transform.position, _playerTransform.position);
-
-            if (distance < attackDistance)
+            if(_runningSpacialPattern == true)
             {
-                _currentState = State.Attack;
-            }
-            else if (distance < traceDistance)
-            {
-                _currentState = State.Trace;
-            }
-            else
-            {
-                _currentState = State.Idle;
+                DashAttack();
             }
 
-            switch (_currentState)
+            ChangeState();
+            
+            if(_runningSpacialPattern == false)
             {
-                case State.Attack:
-                    Attack();
-                    break;
-                case State.Trace:
-                    Trace();
-                    break;
-                case State.Idle:
-                    Idle();
-                    break;
+                switch (_currentState)
+                {
+                    case State.Attack:
+                        Attack();
+                        break;
+                    case State.Trace:
+                        Trace();
+                        break;
+                    case State.Idle:
+                        Idle();
+                        break;
+                }
             }
-
-            //if (_animator.GetCurrentAnimatorStateInfo(0).IsName("hit") == true)
-            //{
-            //    _navMeshAgent.velocity = Vector3.zero;
-            //}
 
             yield return new WaitForSeconds(0.3f);
+        }
+    }
+
+    void ChangeState()
+    {
+        float distance = Vector3.Distance(transform.position, _playerTransform.position);
+
+        if (distance < attackDistance)
+        {
+            _currentState = State.Attack;
+        }
+        else if (distance < traceDistance)
+        {
+            _currentState = State.Trace;
+        }
+        else
+        {
+            _currentState = State.Idle;
         }
     }
 
