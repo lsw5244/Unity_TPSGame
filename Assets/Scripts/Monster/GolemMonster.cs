@@ -35,7 +35,7 @@ public class GolemMonster : Monster, IMonster
         _attackCollider.enabled = false;
 
         _playerTransform = GameObject.Find("Player").transform;/* Find("Player");*/
-        StartCoroutine(TraceCheck());
+        StartCoroutine(StateCheck());
         StartCoroutine(DashAttackCheck());
     }
 
@@ -117,7 +117,7 @@ public class GolemMonster : Monster, IMonster
         }
     }
 
-    IEnumerator TraceCheck()
+    IEnumerator StateCheck()
     {
         while (_isAlive == true)
         {

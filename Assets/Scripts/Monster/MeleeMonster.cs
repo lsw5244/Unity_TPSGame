@@ -21,7 +21,7 @@ public class MeleeMonster : Monster, IMonster
 
         _attackCollider.enabled = false;
         _playerTransform = GameObject.Find("Player").transform;/* Find("Player");*/
-        StartCoroutine(TraceCheck());
+        StartCoroutine(StateCheck());
     }
 
     void Update()
@@ -29,7 +29,7 @@ public class MeleeMonster : Monster, IMonster
 
     }
 
-    IEnumerator TraceCheck()
+    IEnumerator StateCheck()
     {
         while(_isAlive == true)
         {
