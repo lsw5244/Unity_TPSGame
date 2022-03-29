@@ -58,10 +58,10 @@ public class RangedMonster : Monster, IMonster
         currentHp = _maxHP;
 
         _playerTransform = GameObject.Find("Player").transform;/* Find("Player");*/
-        StartCoroutine(TraceCheck());
+        StartCoroutine(StateCheck());
     }
 
-    IEnumerator TraceCheck()
+    IEnumerator StateCheck()
     {
         while (_isAlive == true)
         {
