@@ -36,14 +36,21 @@ public class GolemMonster : Monster, IMonster
 
         _playerTransform = GameObject.Find("Player").transform;/* Find("Player");*/
         StartCoroutine(StateCheck());
-        StartCoroutine(DashAttackCheck());
+        StartCoroutine(SpacialAttackCheck());
     }
 
     void Update()
     {
         if(Input.GetKeyDown(KeyCode.B))
         {
-            _animator.SetTrigger("GroundAttack");
+            if (Random.Range(0.0f, 2.0f) > 1f)
+            {
+                _animator.SetTrigger("DashAttack");
+            }
+            else
+            {
+                _animator.SetTrigger("GroundAttack");
+            }
         }
     }
     
@@ -65,8 +72,7 @@ public class GolemMonster : Monster, IMonster
         Instantiate(_fragments, _grountAttackTransform.position, Quaternion.identity);
     }
 
-
-    IEnumerator DashAttackCheck()
+    IEnumerator SpacialAttackCheck()
     {
         while(true)
         {
@@ -74,7 +80,14 @@ public class GolemMonster : Monster, IMonster
 
             if (_animator.GetCurrentAnimatorStateInfo(0).IsName("run") == true)
             {
-                _animator.SetTrigger("DashAttack");
+                if ( Random.Range(0.0f, 2.0f) > 1f )
+                {
+                    _animator.SetTrigger("DashAttack");
+                }
+                else
+                {
+                    _animator.SetTrigger("GroundAttack");
+                }
             }
         }        
     }
