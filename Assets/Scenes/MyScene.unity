@@ -36530,6 +36530,7 @@ MonoBehaviour:
   attackDistance: 3.5
   attackPower: 10
   _groundHitParicle: {fileID: 8635633004241265601, guid: f1d3b140b98fd7444a0c68ad1605f0bd, type: 3}
+  _grountAttackTransform: {fileID: 197511302}
   _dashAttackTurnSpeed: 15
 --- !u!65 &2752250333963899826
 BoxCollider:

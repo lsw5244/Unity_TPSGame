@@ -13,6 +13,8 @@ public class GolemMonster : Monster, IMonster
 
     [SerializeField]
     private GameObject _groundHitParicle;
+    [SerializeField]
+    private Transform _grountAttackTransform;
 
     [SerializeField]
     private float _dashAttackTurnSpeed = 15f;
@@ -20,6 +22,7 @@ public class GolemMonster : Monster, IMonster
     private bool _isAwake = false;
 
     private bool _runningDashAttack = false;
+    private bool _runningGroundAttack = false;
 
     void Start()
     {
@@ -43,6 +46,24 @@ public class GolemMonster : Monster, IMonster
         }
     }
     
+    void StartGroundAttack()
+    {
+        _runningGroundAttack = true;
+        _navMeshAgent.enabled = false;
+    }
+
+    void EndGroundAttack()
+    {
+        _runningGroundAttack = false;
+        _navMeshAgent.enabled = true;
+    }
+
+    void CreateFragments()
+    {
+        Instantiate(_groundHitParicle, _grountAttackTransform.position, Quaternion.identity);
+    }
+
+
     IEnumerator DashAttackCheck()
     {
         while(true)
@@ -102,10 +123,10 @@ public class GolemMonster : Monster, IMonster
             {
                 DashAttack();
             }
-            else
+
+            if(_runningGroundAttack == false)
             {
                 ChangeState();
-
                 SelectAction();
             }
             
