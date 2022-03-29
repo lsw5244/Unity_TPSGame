@@ -24,6 +24,9 @@ public class GolemMonster : Monster, IMonster
     private bool _runningDashAttack = false;
     private bool _runningGroundAttack = false;
 
+    [SerializeField]
+    private GameObject _fragments;
+
     void Start()
     {
         currentHp = _maxHP;
@@ -61,6 +64,7 @@ public class GolemMonster : Monster, IMonster
     void CreateFragments()
     {
         Instantiate(_groundHitParicle, _grountAttackTransform.position, Quaternion.identity);
+        Instantiate(_fragments, _grountAttackTransform.position, Quaternion.identity);
     }
 
 
