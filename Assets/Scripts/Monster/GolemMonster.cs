@@ -19,8 +19,6 @@ public class GolemMonster : Monster, IMonster
     [SerializeField]
     private float _dashAttackTurnSpeed = 15f;
 
-    private bool _isAwake = false;
-
     private bool _runningDashAttack = false;
     private bool _runningGroundAttack = false;
 
@@ -123,18 +121,21 @@ public class GolemMonster : Monster, IMonster
     {
         while (_isAlive == true)
         {
+            yield return new WaitForSeconds(0.3f);
+
             if(_runningDashAttack == true)
             {
                 DashAttack();
+                continue;
             }
 
-            if(_runningGroundAttack == false)
+            if(_runningGroundAttack == true)
             {
-                ChangeState();
-                SelectAction();
+                continue;
             }
-            
-            yield return new WaitForSeconds(0.3f);
+
+            ChangeState();
+            SelectAction();
         }
     }
 
