@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class PlayerInfo : MonoBehaviour, IPlayer
 {
+    [SerializeField]
+    private GameObject _gun;
+
     private float _maxHp = 100;
     [HideInInspector]
     public float currentHp;
@@ -16,15 +19,22 @@ public class PlayerInfo : MonoBehaviour, IPlayer
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.Space))
-        {      
-            GetDamage(10f, this.gameObject);
+        {
+            //GetDamage(10f, this.gameObject);
+            Die();
         }
     }
 
     public void Die()
     {
-        //GetComponentInChildren<MeshRenderer>().material.color = Color.blue;
         Debug.Log("PlayerDie !!!!! In PlayerInfo");
+        GetComponent<PlayerAnimation>().PlayerDie();
+        _gun.GetComponent<Rigidbody>().useGravity = true;
+        _gun.GetComponent<BoxCollider>().enabled = true;
+        GetComponent<PlayerCamera>().enabled = false;
+        GetComponent<PlayerMove>().enabled = false;
+        GetComponent<PlayerRotate>().enabled = false;
+        GetComponent<PlayerFire>().enabled = false;
     }
 
     public void GetDamage(float damage, GameObject attacker)

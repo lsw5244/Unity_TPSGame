@@ -12,9 +12,7 @@ public class StageChanger : MonoBehaviour
     public string nextSceneName;
 
     private bool _runningFadeAnimation = false;
-
-
-
+        
     private void Start()
     {
         StartCoroutine(FadeIn());
@@ -22,7 +20,6 @@ public class StageChanger : MonoBehaviour
 
     private void Update()
     {
-        //Debug.Log(fadeImage.color.a);   // 0은 투명 1은 불투명
         if(Input.GetKeyDown(KeyCode.Tab) && _runningFadeAnimation == false)
         {
             StartCoroutine(FadeIn());
@@ -44,7 +41,7 @@ public class StageChanger : MonoBehaviour
 
     void ClearStage()
     {
-
+        StartCoroutine(FadeOut());
     }
 
     IEnumerator FadeIn() // 밝아지기
