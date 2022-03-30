@@ -226,6 +226,7 @@ public class GolemMonster : Monster, IMonster
 
         GetComponent<CapsuleCollider>().enabled = false;
         _attackCollider.enabled = false;
+        GameObject.Find("StageChanger").GetComponent<StageChanger>().RemoveMonsterCount();
     }
 
     public void GetDamage(float damage)

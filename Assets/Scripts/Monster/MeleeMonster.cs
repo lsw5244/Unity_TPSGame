@@ -120,6 +120,8 @@ public class MeleeMonster : Monster, IMonster
 
         GetComponent<CapsuleCollider>().enabled = false;
         _attackCollider.enabled = false;
+
+        GameObject.Find("StageChanger").GetComponent<StageChanger>().RemoveMonsterCount();
     }
 
     public void PoisonEffect(float damage)

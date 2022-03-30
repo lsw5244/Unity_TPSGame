@@ -150,6 +150,8 @@ public class RangedMonster : Monster, IMonster
         _rightHandFireParticle.SetActive(false);
 
         GetComponent<CapsuleCollider>().enabled = false;
+
+        GameObject.Find("StageChanger").GetComponent<StageChanger>().RemoveMonsterCount();
     }
 
     public void GetDamage(float damage)

@@ -18,6 +18,8 @@ public class BulletAbility : MonoBehaviour
         if (Instance == null)
         {
             _instance = this;
+            bulletAbility -= HitTarget;
+            bulletAbility += HitTarget;
             DontDestroyOnLoad(this.gameObject);
         }
         else
@@ -52,6 +54,14 @@ public class BulletAbility : MonoBehaviour
             bulletAbility -= PoisonBullet;
             Debug.Log("PoisonBullet 비활성화");
         }
+
+    }
+
+    public void ClearAbility()
+    {
+        bulletAbility = null;
+        bulletAbility -= HitTarget;
+        bulletAbility += HitTarget;
     }
 
     /* BulletAbility */

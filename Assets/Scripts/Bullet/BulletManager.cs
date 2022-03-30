@@ -12,9 +12,6 @@ public class BulletManager : MonoBehaviour
     private GameObject _fireBall;
     private GameObject[] _fireBallPool = new GameObject[10];
 
-    [SerializeField]
-    private PlayerInfo _playerInfo;
-
     private void Awake()
     {
         for(int i = 0; i < 10; ++i)

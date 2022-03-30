@@ -36,7 +36,6 @@ public class PlayerAnimation : MonoBehaviour
 
         _animator.SetFloat("xDir", _horizontal);
         _animator.SetFloat("zDir", _vertical);
-
     }
 
     private void OnAnimatorIK(int layerIndex)
@@ -46,7 +45,10 @@ public class PlayerAnimation : MonoBehaviour
 
         _animator.SetIKPositionWeight(AvatarIKGoal.LeftHand, 1f);
         _animator.SetIKPosition(AvatarIKGoal.LeftHand, _gunHandGaurdTransfom.position);
-
     }
 
+    public void PlayerDie()
+    {
+        _animator.SetTrigger("Die");
+    }
 }
