@@ -3078,7 +3078,7 @@ GameObject:
   - component: {fileID: 1345144653}
   m_Layer: 0
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3214,8 +3214,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentHp: 0
-  _explosionParticle: {fileID: 3160334233454838241, guid: 24c62169074612f48908f112bd945d9e, type: 3}
-  attackPower: 50
 --- !u!54 &1345144652
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -3361,7 +3359,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7954501892710587854}
   m_LocalRotation: {x: 0.0006505333, y: -0.027872525, z: -0.020752124, w: 0.99939585}
-  m_LocalPosition: {x: 0.0010074872, y: 1.0017188, z: -0.01752177}
+  m_LocalPosition: {x: 0.0010070801, y: 1.0017189, z: -0.017520905}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4820392182584655303}
