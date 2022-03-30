@@ -14,6 +14,8 @@ public class HitAbility : MonoBehaviour
     private GameObject _explosionParticle;
     private bool _canHitExplosion = true;
 
+    public float poisonDamage = 20f;
+
     private void Awake()
     {
         if (Instance == null)
@@ -42,6 +44,7 @@ public class HitAbility : MonoBehaviour
         }
     }
 
+    /* hitExplosion */
     void HitExplosion(GameObject attacker)
     {
         if (_canHitExplosion == false)
@@ -64,5 +67,10 @@ public class HitAbility : MonoBehaviour
         _canHitExplosion = false;
         yield return new WaitForSeconds(1f);
         _canHitExplosion = true;
+    }
+
+    void HitPoisonDamage(GameObject attacker)
+    {
+        attacker.GetComponent<IMonster>()?.PoisonEffect(poisonDamage);
     }
 }
