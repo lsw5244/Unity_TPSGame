@@ -10,7 +10,8 @@ public class PlayerInfo : MonoBehaviour, IPlayer
     private float _maxHp = 100;
     [HideInInspector]
     public float currentHp;
-      
+
+    private bool _isAlive = true;
     void Start()
     {
         currentHp = _maxHp;
@@ -21,7 +22,7 @@ public class PlayerInfo : MonoBehaviour, IPlayer
         if (Input.GetKeyDown(KeyCode.Space))
         {
             //GetDamage(10f, this.gameObject);
-            Die();
+            GetDamage(100f, this.gameObject);
         }
     }
 
@@ -35,10 +36,16 @@ public class PlayerInfo : MonoBehaviour, IPlayer
         GetComponent<PlayerMove>().enabled = false;
         GetComponent<PlayerRotate>().enabled = false;
         GetComponent<PlayerFire>().enabled = false;
+        _isAlive = false;
     }
 
     public void GetDamage(float damage, GameObject attacker)
     {
+        if(_isAlive == false)
+        {
+            return;
+        }
+
         if(HitAbility.Instance.hitAbility != null /*&& attacker.CompareTag("Monster") == true*/)
         {
             HitAbility.Instance.hitAbility(attacker);

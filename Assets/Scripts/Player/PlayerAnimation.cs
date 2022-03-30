@@ -15,8 +15,6 @@ public class PlayerAnimation : MonoBehaviour
     private float _horizontal = 0f;
     private float _vertical = 0f;
 
-    private bool die = false;
-
     private void Start()
     {
         _animator = GetComponent<Animator>();
@@ -52,6 +50,5 @@ public class PlayerAnimation : MonoBehaviour
     public void PlayerDie()
     {
         _animator.SetTrigger("Die");
-        die = true;
     }
 }
