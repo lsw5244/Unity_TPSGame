@@ -30,7 +30,7 @@ public class PlayerInfo : MonoBehaviour, IPlayer
     {
         Debug.Log("PlayerDie !!!!! In PlayerInfo");
         GetComponent<PlayerAnimation>().PlayerDie();
-        _gun.GetComponent<Rigidbody>().useGravity = true;
+        _gun.AddComponent<Rigidbody>();
         _gun.GetComponent<BoxCollider>().enabled = true;
         GetComponent<PlayerCamera>().enabled = false;
         GetComponent<PlayerMove>().enabled = false;
