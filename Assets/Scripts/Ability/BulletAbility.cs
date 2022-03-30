@@ -18,6 +18,8 @@ public class BulletAbility : MonoBehaviour
         if (Instance == null)
         {
             _instance = this;
+            bulletAbility -= HitTarget;
+            bulletAbility += HitTarget;
             DontDestroyOnLoad(this.gameObject);
         }
         else
@@ -58,6 +60,8 @@ public class BulletAbility : MonoBehaviour
     public void ClearAbility()
     {
         bulletAbility = null;
+        bulletAbility -= HitTarget;
+        bulletAbility += HitTarget;
     }
 
     /* BulletAbility */
