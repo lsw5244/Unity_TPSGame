@@ -39,6 +39,12 @@ public class StageChanger : MonoBehaviour
         }
     }
 
+    public void PlayerDie()
+    {
+        nextSceneName = "Stage1";
+        StartCoroutine(FadeOut());
+    }
+
     void ClearStage()
     {
         StartCoroutine(FadeOut());

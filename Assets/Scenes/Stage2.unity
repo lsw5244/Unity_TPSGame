@@ -6839,7 +6839,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _bullet: {fileID: 6426696858504711101, guid: 9ce4fc296457e2449a15df253d816f65, type: 3}
   _fireBall: {fileID: 6426696858504711101, guid: 6d0cee442ee9c924da63ac3e086885de, type: 3}
-  _playerInfo: {fileID: 0}
 --- !u!4 &483712929
 Transform:
   m_ObjectHideFlags: 0
@@ -8686,6 +8685,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: RangedMonster
       objectReference: {fileID: 0}
+    - target: {fileID: 8176913115576883071, guid: 32e09a92e53f69e4c811d2cc39309caa, type: 3}
+      propertyPath: _bulletManager
+      value: 
+      objectReference: {fileID: 483712928}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 32e09a92e53f69e4c811d2cc39309caa, type: 3}
 --- !u!1001 &616262206
