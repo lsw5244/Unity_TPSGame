@@ -52,6 +52,12 @@ public class BulletAbility : MonoBehaviour
             bulletAbility -= PoisonBullet;
             Debug.Log("PoisonBullet 비활성화");
         }
+
+    }
+
+    public void ClearAbility()
+    {
+        bulletAbility = null;
     }
 
     /* BulletAbility */

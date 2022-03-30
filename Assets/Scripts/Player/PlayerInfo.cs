@@ -31,6 +31,10 @@ public class PlayerInfo : MonoBehaviour, IPlayer
         Debug.Log("PlayerDie !!!!! In PlayerInfo");
         GameObject.Find("StageChanger").GetComponent<StageChanger>().PlayerDie();
 
+        BulletAbility.Instance.ClearAbility();
+        ImpactAbility.Instance.ClearAbility();
+        HitAbility.Instance.ClearAbility();
+
         GetComponent<PlayerAnimation>().PlayerDie();
         _gun.AddComponent<Rigidbody>();
         _gun.GetComponent<BoxCollider>().enabled = true;

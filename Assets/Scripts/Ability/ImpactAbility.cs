@@ -43,6 +43,11 @@ public class ImpactAbility : MonoBehaviour
         }
     }
 
+    public void ClearAbility()
+    {
+        impactAbility = null;
+    }
+
     /* ImactAblility */
     void BulletExplosion(GameObject bullet)
     {

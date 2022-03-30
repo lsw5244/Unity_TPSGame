@@ -27,6 +27,10 @@ public class HitAbility : MonoBehaviour
             Destroy(gameObject);
         }
     }
+    public void ClearAbility()
+    {
+        hitAbility = null;
+    }
 
     // Update is called once per frame
     void Update()
