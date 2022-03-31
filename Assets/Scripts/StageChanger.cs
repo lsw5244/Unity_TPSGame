@@ -15,7 +15,7 @@ public class StageChanger : MonoBehaviour
 
     [SerializeField]
     private GameObject _clearPanel;
-        
+               
     private void Start()
     {
         StartCoroutine(FadeIn());
@@ -33,10 +33,6 @@ public class StageChanger : MonoBehaviour
 
     public void GameReset()
     {
-        BulletAbility.Instance.ClearAbility();
-        ImpactAbility.Instance.ClearAbility();
-        HitAbility.Instance.ClearAbility();
-
         nextSceneName = "Stage1";
         _clearPanel.SetActive(false);
 

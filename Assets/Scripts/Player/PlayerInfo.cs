@@ -7,14 +7,15 @@ public class PlayerInfo : MonoBehaviour, IPlayer
     [SerializeField]
     private GameObject _gun;
 
-    private float _maxHp = 100;
-    [HideInInspector]
-    public float currentHp;
+    public float maxHp = 100f;
+
+    private float currentHp;
 
     private bool _isAlive = true;
     void Start()
-    {
-        currentHp = _maxHp;
+    {        
+        currentHp = PlayerPrefs.GetFloat("PlayerHp");
+        UIManager.Instance.UpdateHpbar(currentHp / maxHp);
     }
 
     void Update()
@@ -28,11 +29,7 @@ public class PlayerInfo : MonoBehaviour, IPlayer
 
     public void Die()
     {
-        Debug.Log("PlayerDie !!!!! In PlayerInfo");
         GameObject.Find("StageChanger").GetComponent<StageChanger>().PlayerDie();
-        BulletAbility.Instance.ClearAbility();
-        ImpactAbility.Instance.ClearAbility();
-        HitAbility.Instance.ClearAbility();
 
         GetComponent<PlayerAnimation>().PlayerDie();
         _gun.AddComponent<Rigidbody>();
@@ -51,9 +48,10 @@ public class PlayerInfo : MonoBehaviour, IPlayer
             return;
         }
         currentHp -= damage;
-        UIManager.Instance.UpdateHpbar(currentHp / _maxHp);
+        UIManager.Instance.UpdateHpbar(currentHp / maxHp);
+        PlayerPrefs.SetFloat("PlayerHp", currentHp);
 
-        if(HitAbility.Instance.hitAbility != null /*&& attacker.CompareTag("Monster") == true*/)
+        if (HitAbility.Instance.hitAbility != null /*&& attacker.CompareTag("Monster") == true*/)
         {
             HitAbility.Instance.hitAbility(attacker);
         }
