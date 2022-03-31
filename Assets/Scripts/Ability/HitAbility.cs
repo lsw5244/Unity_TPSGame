@@ -39,8 +39,8 @@ public class HitAbility : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            hitAbility -= HitExplosion;
-            hitAbility += HitExplosion;
+            hitAbility -= HitPoisonDamage;
+            hitAbility += HitPoisonDamage;
         }
     }
 
@@ -69,8 +69,20 @@ public class HitAbility : MonoBehaviour
         _canHitExplosion = true;
     }
 
+    public void AddHitExplosion()
+    {
+        hitAbility -= HitExplosion;
+        hitAbility += HitExplosion;
+    }
+
     void HitPoisonDamage(GameObject attacker)
     {
         attacker.GetComponent<IMonster>()?.PoisonEffect(poisonDamage);
+    }
+
+    public void AddHitPoisonDamage()
+    {
+        hitAbility -= HitPoisonDamage;
+        hitAbility += HitPoisonDamage;
     }
 }

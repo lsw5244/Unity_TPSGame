@@ -30,7 +30,6 @@ public class PlayerInfo : MonoBehaviour, IPlayer
     {
         Debug.Log("PlayerDie !!!!! In PlayerInfo");
         GameObject.Find("StageChanger").GetComponent<StageChanger>().PlayerDie();
-
         BulletAbility.Instance.ClearAbility();
         ImpactAbility.Instance.ClearAbility();
         HitAbility.Instance.ClearAbility();
