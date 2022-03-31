@@ -927,6 +927,18 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1440800396}
     m_Modifications:
+    - target: {fileID: 3437449525589712090, guid: a3d0ccf496eea5d43a7ff35276e22298, type: 3}
+      propertyPath: m_Text
+      value: HitPoision
+      objectReference: {fileID: 0}
+    - target: {fileID: 3437449525589712090, guid: a3d0ccf496eea5d43a7ff35276e22298, type: 3}
+      propertyPath: m_FontData.m_VerticalOverflow
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3437449525589712090, guid: a3d0ccf496eea5d43a7ff35276e22298, type: 3}
+      propertyPath: m_FontData.m_HorizontalOverflow
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3437449526558519434, guid: a3d0ccf496eea5d43a7ff35276e22298, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -1015,6 +1027,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: CardButtonLeft
       objectReference: {fileID: 0}
+    - target: {fileID: 3437449526558519436, guid: a3d0ccf496eea5d43a7ff35276e22298, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 7a3e6b2ef89f14245a9d666674032708, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a3d0ccf496eea5d43a7ff35276e22298, type: 3}
 --- !u!224 &3437449525304999942 stripped
@@ -1029,6 +1045,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1440800396}
     m_Modifications:
+    - target: {fileID: 3437449525589712090, guid: a3d0ccf496eea5d43a7ff35276e22298, type: 3}
+      propertyPath: m_FontData.m_VerticalOverflow
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3437449525589712090, guid: a3d0ccf496eea5d43a7ff35276e22298, type: 3}
+      propertyPath: m_FontData.m_HorizontalOverflow
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3437449525670272966, guid: a3d0ccf496eea5d43a7ff35276e22298, type: 3}
       propertyPath: m_SizeDelta.x
       value: 160

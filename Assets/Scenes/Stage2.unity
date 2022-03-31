@@ -8195,6 +8195,32 @@ PrefabInstance:
       propertyPath: m_Name
       value: UI
       objectReference: {fileID: 0}
+    - target: {fileID: 3437449525304999936, guid: 6921284399a984b4a9fbfc8e168d51f3, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: b8ff0fa4d38784242955886956a91bdf, type: 3}
+    - target: {fileID: 3437449525552531661, guid: 6921284399a984b4a9fbfc8e168d51f3, type: 3}
+      propertyPath: m_Text
+      value: "\uC790\uC2E0\uC744 \uACF5\uACA9\uD55C \uB300\uC0C1\uC5D0\uAC8C \uD3ED\uBC1C\uC744
+        \uC77C\uC73C\uD0A8\uB2E4."
+      objectReference: {fileID: 0}
+    - target: {fileID: 3437449526218621726, guid: 6921284399a984b4a9fbfc8e168d51f3, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: bc4f2011497b5d344865cabfade85cb9, type: 3}
+    - target: {fileID: 3437449526248442835, guid: 6921284399a984b4a9fbfc8e168d51f3, type: 3}
+      propertyPath: m_Text
+      value: "\uACF5\uACA9\uC5D0 \uB9DE\uC740 \uB300\uC0C1\uC5D0\uAC8C \uB3C5 \uB370\uBBF8\uC9C0\uB97C
+        \uC900\uB2E4."
+      objectReference: {fileID: 0}
+    - target: {fileID: 3437449526777293910, guid: 6921284399a984b4a9fbfc8e168d51f3, type: 3}
+      propertyPath: m_Text
+      value: HitExplosion
+      objectReference: {fileID: 0}
+    - target: {fileID: 3437449527137562440, guid: 6921284399a984b4a9fbfc8e168d51f3, type: 3}
+      propertyPath: m_Text
+      value: PoisionBullet
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6921284399a984b4a9fbfc8e168d51f3, type: 3}
 --- !u!114 &570110515 stripped
