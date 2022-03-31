@@ -16462,7 +16462,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 1d10d29e4152a2f4ab3249900d5397fc, type: 3}
+  m_Sprite: {fileID: 21300000, guid: b74070831155c8d4c8882928649b8818, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -24457,10 +24457,10 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_Sprite: {fileID: 21300000, guid: 1d10d29e4152a2f4ab3249900d5397fc, type: 3}
-  m_Type: 0
+  m_Type: 3
   m_PreserveAspect: 0
   m_FillCenter: 1
-  m_FillMethod: 4
+  m_FillMethod: 0
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
@@ -24686,6 +24686,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _hpbarImage: {fileID: 749011838}
+  _monsterHpbarImage: {fileID: 1673962658}
+  _monsterNameText: {fileID: 1057649539}
 --- !u!4 &1717902329
 Transform:
   m_ObjectHideFlags: 0

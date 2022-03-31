@@ -12,6 +12,11 @@ public class UIManager : MonoBehaviour
     [SerializeField]
     private Image _hpbarImage;
 
+    [SerializeField]
+    private Image _monsterHpbarImage;
+    [SerializeField]
+    private Text _monsterNameText;
+
     void Awake()
     {
         if (Instance == null)
@@ -28,5 +33,11 @@ public class UIManager : MonoBehaviour
     public void UpdateHpbar(float currentHpPercent)
     {
         _hpbarImage.fillAmount = currentHpPercent;
+    }
+
+    public void UpdateMonsterHpbar(float currentHpPercent, string name)
+    {
+        _monsterNameText.text = name;
+        _monsterHpbarImage.fillAmount = currentHpPercent;
     }
 }
