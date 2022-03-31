@@ -12,22 +12,13 @@ public class StageChanger : MonoBehaviour
     public string nextSceneName;
 
     private bool _runningFadeAnimation = false;
+
+    [SerializeField]
+    private GameObject _clearPanel;
         
     private void Start()
     {
         StartCoroutine(FadeIn());
-    }
-
-    private void Update()
-    {
-        if(Input.GetKeyDown(KeyCode.Tab) && _runningFadeAnimation == false)
-        {
-            StartCoroutine(FadeIn());
-        }
-        if(Input.GetKeyDown(KeyCode.CapsLock) && _runningFadeAnimation == false)
-        {
-            StartCoroutine(FadeOut());
-        }
     }
 
     public void RemoveMonsterCount()
@@ -35,7 +26,8 @@ public class StageChanger : MonoBehaviour
         monsterCount--;
         if(monsterCount <= 0)
         {
-            ClearStage();
+            _clearPanel.SetActive(true);
+            //ClearStage();
         }
     }
 
@@ -45,8 +37,9 @@ public class StageChanger : MonoBehaviour
         StartCoroutine(FadeOut());
     }
 
-    void ClearStage()
+    public void ClearStage()
     {
+        _clearPanel.SetActive(false);
         StartCoroutine(FadeOut());
     }
 
@@ -69,7 +62,7 @@ public class StageChanger : MonoBehaviour
         _runningFadeAnimation = true;
         Color fadeColor = fadeImage.color;
 
-        while (fadeColor.a < 1)
+        while (fadeColor.a < 1f)
         {
             fadeColor.a += 0.1f;
             fadeImage.color = fadeColor;

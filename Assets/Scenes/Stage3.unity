@@ -19648,6 +19648,7 @@ MonoBehaviour:
   monsterCount: 1
   fadeImage: {fileID: 1726743918}
   nextSceneName: Stage1
+  _clearPanel: {fileID: 1726743920}
 --- !u!4 &1382598603
 Transform:
   m_ObjectHideFlags: 0
@@ -24200,6 +24201,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1440800395, guid: 6921284399a984b4a9fbfc8e168d51f3, type: 3}
+      propertyPath: m_Name
+      value: ClearPanel
+      objectReference: {fileID: 0}
+    - target: {fileID: 1440800395, guid: 6921284399a984b4a9fbfc8e168d51f3, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1771664335248356136, guid: 6921284399a984b4a9fbfc8e168d51f3, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -24312,6 +24321,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &1726743920 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1440800395, guid: 6921284399a984b4a9fbfc8e168d51f3, type: 3}
+  m_PrefabInstance: {fileID: 1726743917}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1727987467
 PrefabInstance:
   m_ObjectHideFlags: 0
