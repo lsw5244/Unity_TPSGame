@@ -31,6 +31,18 @@ public class StageChanger : MonoBehaviour
         }
     }
 
+    public void GameReset()
+    {
+        BulletAbility.Instance.ClearAbility();
+        ImpactAbility.Instance.ClearAbility();
+        HitAbility.Instance.ClearAbility();
+
+        nextSceneName = "Stage1";
+        _clearPanel.SetActive(false);
+
+        StartCoroutine(FadeOut());
+    }
+
     public void PlayerDie()
     {
         nextSceneName = "Stage1";
