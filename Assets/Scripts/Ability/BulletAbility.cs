@@ -74,4 +74,10 @@ public class BulletAbility : MonoBehaviour
     {
         target.GetComponent<IMonster>().PoisonEffect(poisonDamage);
     }
+
+    public void AddPoisonBullet()
+    {
+        bulletAbility -= PoisonBullet;
+        bulletAbility += PoisonBullet;
+    }
 }

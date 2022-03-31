@@ -59,4 +59,10 @@ public class ImpactAbility : MonoBehaviour
             colliders[i].GetComponent<IMonster>()?.GetDamage(explosionDamage);
         }
     }
+
+    public void AddBulletExplosion()
+    {
+        impactAbility -= BulletExplosion;
+        impactAbility += BulletExplosion;
+    }
 }

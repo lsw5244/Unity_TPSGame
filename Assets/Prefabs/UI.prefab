@@ -32,6 +32,7 @@ RectTransform:
   - {fileID: 3437449525304999942}
   - {fileID: 3437449526218621720}
   - {fileID: 1964004195}
+  - {fileID: 1999456411}
   m_Father: {fileID: 1771664335248356136}
   m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -203,6 +204,49 @@ MonoBehaviour:
     m_VerticalOverflow: 1
     m_LineSpacing: 1
   m_Text: "\uC2A4\uD14C\uC774\uC9C0 \uD074\uB9AC\uC5B4 !\n\uD2B9\uC131\uC744 \uC120\uD0DD\uD558\uC138\uC694."
+--- !u!1 &1999456409
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1999456411}
+  - component: {fileID: 1999456410}
+  m_Layer: 0
+  m_Name: AbilityAdder
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1999456411
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1999456409}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -400, y: -179.23497, z: 0}
+  m_LocalScale: {x: 0.6245121, y: 0.6245121, z: 0.6245121}
+  m_Children: []
+  m_Father: {fileID: 1440800396}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1999456410
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1999456409}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8a414f6eeaba96e4b9a6d98366cd0a26, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1771664335248356140
 GameObject:
   m_ObjectHideFlags: 0
@@ -939,6 +983,11 @@ PrefabInstance:
       propertyPath: m_FontData.m_HorizontalOverflow
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3437449526445471809, guid: a3d0ccf496eea5d43a7ff35276e22298, type: 3}
+      propertyPath: m_Text
+      value: "\uC790\uC2E0\uC744 \uACF5\uACA9\uD55C \uB300\uC0C1\uC5D0\uAC8C \uB3C5
+        \uB370\uBBF8\uC9C0\uB97C \uC900\uB2E4."
+      objectReference: {fileID: 0}
     - target: {fileID: 3437449526558519434, guid: a3d0ccf496eea5d43a7ff35276e22298, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -1046,6 +1095,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 1440800396}
     m_Modifications:
     - target: {fileID: 3437449525589712090, guid: a3d0ccf496eea5d43a7ff35276e22298, type: 3}
+      propertyPath: m_Text
+      value: BulletExplosion
+      objectReference: {fileID: 0}
+    - target: {fileID: 3437449525589712090, guid: a3d0ccf496eea5d43a7ff35276e22298, type: 3}
       propertyPath: m_FontData.m_VerticalOverflow
       value: 0
       objectReference: {fileID: 0}
@@ -1060,6 +1113,10 @@ PrefabInstance:
     - target: {fileID: 3437449525670272966, guid: a3d0ccf496eea5d43a7ff35276e22298, type: 3}
       propertyPath: m_SizeDelta.y
       value: 160
+      objectReference: {fileID: 0}
+    - target: {fileID: 3437449526445471809, guid: a3d0ccf496eea5d43a7ff35276e22298, type: 3}
+      propertyPath: m_Text
+      value: "\uCD1D\uC54C\uC774 \uCC29\uD0C4 \uC2DC \uD3ED\uBC1C\uC744 \uC77C\uC73C\uD0A8\uB2E4."
       objectReference: {fileID: 0}
     - target: {fileID: 3437449526558519434, guid: a3d0ccf496eea5d43a7ff35276e22298, type: 3}
       propertyPath: m_Pivot.x
