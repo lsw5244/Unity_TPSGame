@@ -37,6 +37,9 @@ public class UIManager : MonoBehaviour
 
     public void UpdateMonsterHpbar(float currentHpPercent, string name)
     {
+        _monsterNameText.gameObject.SetActive(true);
+        _monsterHpbarImage.gameObject.SetActive(true);
+
         _monsterNameText.text = name;
         _monsterHpbarImage.fillAmount = currentHpPercent;
     }
