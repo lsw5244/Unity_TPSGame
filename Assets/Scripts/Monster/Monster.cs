@@ -35,5 +35,5 @@ public abstract class Monster : MonoBehaviour
     public abstract void Idle();
     public abstract void Trace();
     public abstract void Attack();
-    public abstract void Die();
+    public abstract void Die();    
 }

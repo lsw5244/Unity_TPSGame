@@ -85,6 +85,8 @@ public class MeleeMonster : Monster, IMonster
 
         _animator.SetTrigger("Hit");
         currentHp -= damage;
+        UIManager.Instance.UpdateMonsterHpbar(currentHp / _maxHP, gameObject.name);
+
         if (currentHp <= 0f)
         {
             Die();
@@ -142,9 +144,11 @@ public class MeleeMonster : Monster, IMonster
         while (poisonDamageCount > 0)
         {
             currentHp -= damage;
+            UIManager.Instance.UpdateMonsterHpbar(currentHp / _maxHP, gameObject.name);
             if (currentHp <= 0f)
             {
                 Die();
+                break;
             }
 
             yield return new WaitForSeconds(poisonDamageDelay);     // 0.5초에 한 번씩 실행되도록

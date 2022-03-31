@@ -51,19 +51,17 @@ public class PlayerInfo : MonoBehaviour, IPlayer
         {
             return;
         }
+        currentHp -= damage;
+        UIManager.Instance.UpdateHpbar(currentHp / _maxHp);
 
         if(HitAbility.Instance.hitAbility != null /*&& attacker.CompareTag("Monster") == true*/)
         {
             HitAbility.Instance.hitAbility(attacker);
         }
-
-        currentHp -= damage;
-
+        
         if (currentHp <= 0f)
         {
             Die();
         }
-
-        Debug.Log($"Player GetDamage !!! CurrentHp : {currentHp}");
     }
 }
