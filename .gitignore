@@ -15,6 +15,7 @@
 /[Aa]ssets/[Ww]erewolf_[Aa]nimset/
 /[Aa]ssets/[Ss]cript_[Ww]izard_[Aa]nim[Ss]et/
 /[Aa]ssets/[Gg]ient_[Gg]olem_[Aa]nim[Ss]et/
+/[Aa]ssets/[Cc]ard_game_[Gg][Uu][Ii]/
 
 # Asset meta data should only be ignored when the corresponding asset is also ignored
 !/[Aa]ssets/**/*.meta
