@@ -19,11 +19,13 @@ public class StageChanger : MonoBehaviour
     private void Start()
     {
         StartCoroutine(FadeIn());
+        UIManager.Instance.UpdateMonsterCount(monsterCount);
     }
 
     public void RemoveMonsterCount()
     {
         monsterCount--;
+        UIManager.Instance.UpdateMonsterCount(monsterCount);
         if(monsterCount <= 0)
         {
             _clearPanel.SetActive(true);
