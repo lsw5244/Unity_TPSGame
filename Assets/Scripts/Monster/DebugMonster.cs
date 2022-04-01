@@ -81,4 +81,9 @@ public class DebugMonster : MonoBehaviour, IMonster
     {
         throw new System.NotImplementedException();
     }
+
+    public void StartAttentionMode()
+    {
+        throw new System.NotImplementedException();
+    }
 }

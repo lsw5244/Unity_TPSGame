@@ -162,13 +162,13 @@ public class RangedMonster : Monster, IMonster
         if (_isAlive == false)
             return;
 
-        _continueAttentionMode = true;
-
-        if (_attentionModeTrigger == false)
+        Collider[] colls = Physics.OverlapSphere(transform.position, 3f, 1 << gameObject.layer);
+        for (int i = 0; i < colls.Length; ++i)
         {
-            _attentionModeTrigger = true;
-            StartCoroutine(AttentionMode());
+            colls[i].gameObject.GetComponent<IMonster>()?.StartAttentionMode();
         }
+
+        StartAttentionMode();
 
         _animator.SetTrigger("Hit");
         currentHp -= damage;
@@ -229,5 +229,16 @@ public class RangedMonster : Monster, IMonster
         // 추적 중지
         _navMeshAgent.isStopped = true;
         _navMeshAgent.velocity = Vector3.zero;
+    }
+
+    public void StartAttentionMode()
+    {
+        _continueAttentionMode = true;
+
+        if (_attentionModeTrigger == false)
+        {
+            _attentionModeTrigger = true;
+            StartCoroutine(AttentionMode());
+        }
     }
 }

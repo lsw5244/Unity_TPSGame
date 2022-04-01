@@ -12,4 +12,6 @@ public interface IMonster
     //void Trace();
 
     //void Idle();
+
+    void StartAttentionMode();
 }

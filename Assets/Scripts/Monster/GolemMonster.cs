@@ -241,13 +241,13 @@ public class GolemMonster : Monster, IMonster
         if (_isAlive == false)
             return;
 
-        _continueAttentionMode = true;
-
-        if (_attentionModeTrigger == false)
+        Collider[] colls = Physics.OverlapSphere(transform.position, 3f, 1 << gameObject.layer);
+        for (int i = 0; i < colls.Length; ++i)
         {
-            _attentionModeTrigger = true;
-            StartCoroutine(AttentionMode());
+            colls[i].gameObject.GetComponent<IMonster>()?.StartAttentionMode();
         }
+
+        StartAttentionMode();
 
         currentHp -= damage;
         UIManager.Instance.UpdateMonsterHpbar(currentHp / _maxHP, gameObject.name);
@@ -337,6 +337,17 @@ public class GolemMonster : Monster, IMonster
         {
             other.GetComponent<IPlayer>()?.GetDamage(attackPower, this.gameObject);
             _attackCollider.enabled = false;
+        }
+    }
+
+    public void StartAttentionMode()
+    {
+        _continueAttentionMode = true;
+
+        if (_attentionModeTrigger == false)
+        {
+            _attentionModeTrigger = true;
+            StartCoroutine(AttentionMode());
         }
     }
 }
