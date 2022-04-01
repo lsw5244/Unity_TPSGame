@@ -10617,6 +10617,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 7310376449254187080, guid: 021edd9b7b871d541aecdcddccdc25b9, type: 3}
+      propertyPath: _groundAttackRange
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 7310376449254187081, guid: 021edd9b7b871d541aecdcddccdc25b9, type: 3}
       propertyPath: m_Name
       value: GolemMonster
@@ -30519,7 +30523,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!222 &1771664336246234710
 CanvasRenderer:
   m_ObjectHideFlags: 0

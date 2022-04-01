@@ -8203,6 +8203,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: UI
       objectReference: {fileID: 0}
+    - target: {fileID: 1771664336692140862, guid: 6921284399a984b4a9fbfc8e168d51f3, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1771664337294294525, guid: 6921284399a984b4a9fbfc8e168d51f3, type: 3}
       propertyPath: m_IsActive
       value: 1

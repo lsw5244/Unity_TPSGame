@@ -24,6 +24,8 @@ public class GolemMonster : Monster, IMonster
 
     [SerializeField]
     private GameObject _fragments;
+    [SerializeField]
+    private float _groundAttackRange = 5f;
 
     void Start()
     {
@@ -68,6 +70,11 @@ public class GolemMonster : Monster, IMonster
 
     void CreateFragments()
     {
+        if(Vector3.Distance(_playerTransform.position, _grountAttackTransform.position) < _groundAttackRange)
+        {
+            _playerTransform.gameObject.GetComponent<IPlayer>()?.GetDamage(attackPower, this.gameObject);
+        }
+
         Instantiate(_groundHitParicle, _grountAttackTransform.position, Quaternion.identity);
         Instantiate(_fragments, _grountAttackTransform.position, Quaternion.identity);
     }
@@ -113,7 +120,7 @@ public class GolemMonster : Monster, IMonster
     void DashAttack()
     {
         Vector3 playerDistance = _playerTransform.position - transform.position;
-
+                
         // 앞에 있는지 확인
         if(Vector3.Dot(transform.forward, playerDistance) < 0f)
         {
