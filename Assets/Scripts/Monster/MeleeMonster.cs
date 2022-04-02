@@ -145,7 +145,7 @@ public class MeleeMonster : Monster, IMonster
         {
             currentHp -= damage;
             UIManager.Instance.UpdateMonsterHpbar(currentHp / _maxHP, gameObject.name);
-            if (currentHp <= 0f)
+            if (currentHp <= 0f && _isAlive == true)
             {
                 Die();
                 break;
