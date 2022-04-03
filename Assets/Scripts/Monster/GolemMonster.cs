@@ -5,8 +5,6 @@ using UnityEngine.AI;
 
 public class GolemMonster : Monster, IMonster
 {
-    private Animator _animator;
-    private NavMeshAgent _navMeshAgent;
     private BoxCollider _attackCollider;
 
     public float attackPower = 10f;
@@ -272,15 +270,6 @@ public class GolemMonster : Monster, IMonster
         traceDistance /= 2f;
     }
 
-    public override void Idle()
-    {
-        // 애니메이션 변경
-        _animator.SetBool("Trace", false);
-        // 추적 중지
-        _navMeshAgent.isStopped = true;
-        _navMeshAgent.velocity = Vector3.zero;
-    }
-
     public void PoisonEffect(float damage)
     {
         poisonDamageCount = 5;
@@ -318,16 +307,17 @@ public class GolemMonster : Monster, IMonster
 
     public override void Trace()
     {
-        // 애니메이션 변경
-        _animator.SetBool("Attack", false);
-        StopAttack();
-        _animator.SetBool("Trace", true);
+        base.Trace();
 
-        if (_animator.GetCurrentAnimatorStateInfo(0).IsName("attack") == false)
+        // 공격이 진행중일 때 움직이지 않도록 제한 ( 계속 공격하도록 )
+        if (_animator.GetCurrentAnimatorStateInfo(0).IsName("attack") == true)
         {
-            // 추적 시작
-            _navMeshAgent.isStopped = false;
-            _navMeshAgent.destination = _playerTransform.position;
+            // 추적 다시 중지
+            _navMeshAgent.isStopped = true;
+        }
+        else
+        {
+            StopAttack();
         }
     }
 

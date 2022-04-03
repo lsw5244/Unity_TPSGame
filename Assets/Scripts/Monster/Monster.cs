@@ -1,8 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
-public abstract class Monster : MonoBehaviour
+public class Monster : MonoBehaviour
 {
     public enum State
     {
@@ -31,9 +32,32 @@ public abstract class Monster : MonoBehaviour
     protected bool _continueAttentionMode = false;
 
     protected Transform _playerTransform;
+    protected Animator _animator;
+    protected NavMeshAgent _navMeshAgent;
 
-    public abstract void Idle();
-    public abstract void Trace();
-    public abstract void Attack();
-    public abstract void Die();    
+    public virtual void Idle()
+    {
+        // 애니메이션 변경
+        _animator.SetBool("Trace", false);
+        // 추적 중지
+        _navMeshAgent.isStopped = true;
+        _navMeshAgent.velocity = Vector3.zero;
+    }
+    public virtual void Trace()
+    {
+        // 애니메이션 변경
+        _animator.SetBool("Attack", false);
+        _animator.SetBool("Trace", true);
+        // 추적 시작
+        _navMeshAgent.isStopped = false;
+        _navMeshAgent.destination = _playerTransform.position;
+    }
+    public virtual void Attack()
+    {
+
+    }
+    public virtual void Die()
+    {
+
+    }
 }

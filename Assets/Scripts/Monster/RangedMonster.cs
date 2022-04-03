@@ -6,9 +6,6 @@ using UnityEngine.AI;
 
 public class RangedMonster : Monster, IMonster
 {
-    private Animator _animator;
-    private NavMeshAgent _navMeshAgent;
-
     public float attackPower = 10f;
 
     [SerializeField]
@@ -197,23 +194,14 @@ public class RangedMonster : Monster, IMonster
 
     public override void Idle()
     {
-        // 애니메이션 변경
-        _animator.SetBool("Trace", false);
-        // 추적 중지
-        _navMeshAgent.isStopped = true;
-        _navMeshAgent.velocity = Vector3.zero;
+        base.Idle();
 
         _leftHandFireParticle.SetActive(false);
     }
 
     public override void Trace()
     {
-        // 애니메이션 변경
-        _animator.SetBool("Attack", false);
-        _animator.SetBool("Trace", true);
-        // 추적 시작
-        _navMeshAgent.isStopped = false;
-        _navMeshAgent.destination = _playerTransform.position;
+        base.Trace();
 
         _leftHandFireParticle.SetActive(false);
     }
