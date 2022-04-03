@@ -157,24 +157,13 @@ public class GolemMonster : Monster, IMonster
         }
     }
 
-    public override void SelectAction()
-    {
-        if (_runningDashAttack == false)
-        {
-            switch (_currentState)
-            {
-                case State.Attack:
-                    Attack();
-                    break;
-                case State.Trace:
-                    Trace();
-                    break;
-                case State.Idle:
-                    Idle();
-                    break;
-            }
-        }
-    }
+    //public override void SelectAction()
+    //{
+    //    if (_runningDashAttack == false)
+    //    {
+    //        base.SelectAction();
+    //    }
+    //}
 
     public void StartAttack()
     {
