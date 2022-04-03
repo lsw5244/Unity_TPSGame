@@ -5,8 +5,6 @@ using UnityEngine.AI;
 
 public class GolemMonster : Monster, IMonster
 {
-    private Animator _animator;
-    private NavMeshAgent _navMeshAgent;
     private BoxCollider _attackCollider;
 
     public float attackPower = 10f;
@@ -137,7 +135,7 @@ public class GolemMonster : Monster, IMonster
         }
     }
 
-    IEnumerator StateCheck()
+    protected override IEnumerator StateCheck()
     {
         while (_isAlive == true)
         {
@@ -159,54 +157,13 @@ public class GolemMonster : Monster, IMonster
         }
     }
 
-    void ChangeState()
-    {
-        float distance = Vector3.Distance(transform.position, _playerTransform.position);
-
-        if (distance < attackDistance)
-        {
-            _currentState = State.Attack;
-        }
-        else if (distance < traceDistance)
-        {
-            _currentState = State.Trace;
-        }
-        else
-        {
-            _currentState = State.Idle;
-        }
-    }
-
-    void SelectAction()
-    {
-        if (_runningDashAttack == false)
-        {
-            switch (_currentState)
-            {
-                case State.Attack:
-                    Attack();
-                    break;
-                case State.Trace:
-                    Trace();
-                    break;
-                case State.Idle:
-                    Idle();
-                    break;
-            }
-        }
-    }
-
-    public override void Attack()
-    {
-        // 애니메이션 변경
-        _animator.SetBool("Attack", true);
-
-        transform.LookAt(_playerTransform.position);
-
-        // 추적 중지
-        _navMeshAgent.isStopped = true;
-        _navMeshAgent.velocity = Vector3.zero;
-    }
+    //public override void SelectAction()
+    //{
+    //    if (_runningDashAttack == false)
+    //    {
+    //        base.SelectAction();
+    //    }
+    //}
 
     public void StartAttack()
     {
@@ -220,20 +177,10 @@ public class GolemMonster : Monster, IMonster
 
     public override void Die()
     {
-        _isAlive = false;
-
-        StopAllCoroutines();
-        _poisonParicle.SetActive(false);
-
-        _animator.SetTrigger("Die");
-
-        _navMeshAgent.enabled = false;
-        //_navMeshAgent.isStopped = true;
-        //_navMeshAgent.velocity = Vector3.zero;
+        base.Die();
 
         GetComponent<CapsuleCollider>().enabled = false;
         _attackCollider.enabled = false;
-        GameObject.Find("StageChanger").GetComponent<StageChanger>().RemoveMonsterCount();
     }
 
     public void GetDamage(float damage)
@@ -257,31 +204,7 @@ public class GolemMonster : Monster, IMonster
         }
     }
 
-    IEnumerator AttentionMode()
-    {
-        traceDistance *= 2f;
-
-        while (_continueAttentionMode == true)
-        {
-            _continueAttentionMode = false;
-
-            yield return new WaitForSeconds(5f);
-        }
-
-        _attentionModeTrigger = false;
-        traceDistance /= 2f;
-    }
-
-    public override void Idle()
-    {
-        // 애니메이션 변경
-        _animator.SetBool("Trace", false);
-        // 추적 중지
-        _navMeshAgent.isStopped = true;
-        _navMeshAgent.velocity = Vector3.zero;
-    }
-
-    public void PoisonEffect(float damage)
+    public void StartPoisonEffect(float damage)
     {
         poisonDamageCount = 5;
 
@@ -290,44 +213,20 @@ public class GolemMonster : Monster, IMonster
             StartCoroutine(Poison(damage));
         }
     }
-
-    IEnumerator Poison(float damage)
-    {
-        _poisonParicle.SetActive(true);
-        _isPoisonState = true;
-
-        while (poisonDamageCount > 0)
-        {
-            currentHp -= damage;
-            UIManager.Instance.UpdateMonsterHpbar(currentHp / _maxHP, gameObject.name);
-
-            if (currentHp <= 0f && _isAlive == true)
-            {
-                Die();
-                break;
-            }
-
-            yield return new WaitForSeconds(poisonDamageDelay);     // 0.5초에 한 번씩 실행되도록
-
-            poisonDamageCount--;
-        }
-
-        _isPoisonState = false;
-        _poisonParicle.SetActive(false);
-    }
-
+    
     public override void Trace()
     {
-        // 애니메이션 변경
-        _animator.SetBool("Attack", false);
-        StopAttack();
-        _animator.SetBool("Trace", true);
+        base.Trace();
 
-        if (_animator.GetCurrentAnimatorStateInfo(0).IsName("attack") == false)
+        // 공격이 진행중일 때 움직이지 않도록 제한 ( 계속 공격하도록 )
+        if (_animator.GetCurrentAnimatorStateInfo(0).IsName("attack") == true)
         {
-            // 추적 시작
-            _navMeshAgent.isStopped = false;
-            _navMeshAgent.destination = _playerTransform.position;
+            // 추적 다시 중지
+            _navMeshAgent.isStopped = true;
+        }
+        else
+        {
+            StopAttack();
         }
     }
 
@@ -342,11 +241,11 @@ public class GolemMonster : Monster, IMonster
 
     public void StartAttentionMode()
     {
-        _continueAttentionMode = true;
+        _attentionModeContinueTrigger = true;
 
-        if (_attentionModeTrigger == false)
+        if (_currentAttentionMode == false)
         {
-            _attentionModeTrigger = true;
+            _currentAttentionMode = true;
             StartCoroutine(AttentionMode());
         }
     }

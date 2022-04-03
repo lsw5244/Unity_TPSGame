@@ -5,7 +5,7 @@ public interface IMonster
 
     //void Die();
 
-    void PoisonEffect(float damage);
+    void StartPoisonEffect(float damage);
 
     //void Attack();
 

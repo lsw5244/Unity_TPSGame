@@ -6,9 +6,6 @@ using UnityEngine.AI;
 
 public class RangedMonster : Monster, IMonster
 {
-    private Animator _animator;
-    private NavMeshAgent _navMeshAgent;
-
     public float attackPower = 10f;
 
     [SerializeField]
@@ -61,48 +58,7 @@ public class RangedMonster : Monster, IMonster
         StartCoroutine(StateCheck());
     }
 
-    IEnumerator StateCheck()
-    {
-        while (_isAlive == true)
-        {
-            float distance = Vector3.Distance(transform.position, _playerTransform.position);
-
-            if (distance < attackDistance)
-            {
-                _currentState = State.Attack;
-            }
-            else if (distance < traceDistance)
-            {
-                _currentState = State.Trace;
-            }
-            else
-            {
-                _currentState = State.Idle;
-            }
-
-            switch (_currentState)
-            {
-                case State.Attack:
-                    Attack();
-                    break;
-                case State.Trace:
-                    Trace();
-                    break;
-                case State.Idle:
-                    Idle();
-                    break;
-            }
-
-            if (_animator.GetCurrentAnimatorStateInfo(0).IsName("hit") == true)
-            {
-                _navMeshAgent.velocity = Vector3.zero;
-            }
-
-            yield return new WaitForSeconds(0.3f);
-        }
-    }
-
-    public void PoisonEffect(float damage)
+    public void StartPoisonEffect(float damage)
     {
         poisonDamageCount = 5;
 
@@ -112,49 +68,14 @@ public class RangedMonster : Monster, IMonster
         }
     }
 
-    IEnumerator Poison(float damage)
-    {
-        _poisonParicle.SetActive(true);
-        _isPoisonState = true;
-
-        while (poisonDamageCount > 0)
-        {
-            currentHp -= damage;
-            UIManager.Instance.UpdateMonsterHpbar(currentHp / _maxHP, gameObject.name);
-
-            if (currentHp <= 0f && _isAlive == true)
-            {               
-                Die();
-                break;
-            }
-
-            yield return new WaitForSeconds(poisonDamageDelay);     // 0.5초에 한 번씩 실행되도록
-
-            poisonDamageCount--;
-        }
-
-        _isPoisonState = false;
-        _poisonParicle.SetActive(false);
-    }
-
     public override void Die()
     {
-        _isAlive = false;
-
-        StopAllCoroutines();
-        _poisonParicle.SetActive(false);
-
-        _animator.SetTrigger("Die");
-
-        _navMeshAgent.isStopped = true;
-        _navMeshAgent.velocity = Vector3.zero;
-
+        base.Die();
+        
         _leftHandFireParticle.SetActive(false);
         _rightHandFireParticle.SetActive(false);
 
         GetComponent<CapsuleCollider>().enabled = false;
-
-        GameObject.Find("StageChanger").GetComponent<StageChanger>().RemoveMonsterCount();
     }
 
     public void GetDamage(float damage)
@@ -180,64 +101,27 @@ public class RangedMonster : Monster, IMonster
         }
     }
 
-    IEnumerator AttentionMode()
-    {
-        traceDistance *= 2f;
-
-        while (_continueAttentionMode == true)
-        {
-            _continueAttentionMode = false;
-
-            yield return new WaitForSeconds(5f);
-        }
-
-        _attentionModeTrigger = false;
-        traceDistance /= 2f;
-    }
-
     public override void Idle()
     {
-        // 애니메이션 변경
-        _animator.SetBool("Trace", false);
-        // 추적 중지
-        _navMeshAgent.isStopped = true;
-        _navMeshAgent.velocity = Vector3.zero;
+        base.Idle();
 
         _leftHandFireParticle.SetActive(false);
     }
 
     public override void Trace()
     {
-        // 애니메이션 변경
-        _animator.SetBool("Attack", false);
-        _animator.SetBool("Trace", true);
-        // 추적 시작
-        _navMeshAgent.isStopped = false;
-        _navMeshAgent.destination = _playerTransform.position;
+        base.Trace();
 
         _leftHandFireParticle.SetActive(false);
     }
 
-    public override void Attack()
-    {
-        // 애니메이션 변경
-        _animator.SetBool("Trace", true);
-        _animator.SetBool("Attack", true);
-
-        transform.LookAt(_playerTransform.position);
-
-        // 추적 중지
-        _navMeshAgent.isStopped = true;
-        _navMeshAgent.velocity = Vector3.zero;
-    }
-
     public void StartAttentionMode()
     {
-        _continueAttentionMode = true;
+        _attentionModeContinueTrigger = true;
 
-        if (_attentionModeTrigger == false)
+        if (_currentAttentionMode == false)
         {
-            _attentionModeTrigger = true;
+            _currentAttentionMode = true;
             StartCoroutine(AttentionMode());
         }
     }

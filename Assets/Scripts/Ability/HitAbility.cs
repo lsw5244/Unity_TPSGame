@@ -77,7 +77,7 @@ public class HitAbility : MonoBehaviour
 
     void HitPoisonDamage(GameObject attacker)
     {
-        attacker.GetComponent<IMonster>()?.PoisonEffect(poisonDamage);
+        attacker.GetComponent<IMonster>()?.StartPoisonEffect(poisonDamage);
     }
 
     public void AddHitPoisonDamage()
