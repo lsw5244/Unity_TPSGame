@@ -136,22 +136,13 @@ public class RangedMonster : Monster, IMonster
 
     public override void Die()
     {
-        _isAlive = false;
-
-        StopAllCoroutines();
-        _poisonParicle.SetActive(false);
-
-        _animator.SetTrigger("Die");
-
-        _navMeshAgent.isStopped = true;
-        _navMeshAgent.velocity = Vector3.zero;
-
+        base.Die();
+        
         _leftHandFireParticle.SetActive(false);
         _rightHandFireParticle.SetActive(false);
 
         GetComponent<CapsuleCollider>().enabled = false;
 
-        GameObject.Find("StageChanger").GetComponent<StageChanger>().RemoveMonsterCount();
     }
 
     public void GetDamage(float damage)

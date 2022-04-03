@@ -66,6 +66,17 @@ public class Monster : MonoBehaviour
     }
     public virtual void Die()
     {
+        StopAllCoroutines();
 
+        _isAlive = false;
+        _poisonParicle.SetActive(false);
+
+        _animator.SetTrigger("Die");
+
+        _navMeshAgent.isStopped = true;
+        _navMeshAgent.velocity = Vector3.zero;
+        _navMeshAgent.enabled = false;
+
+        GameObject.Find("StageChanger").GetComponent<StageChanger>().RemoveMonsterCount();
     }
 }

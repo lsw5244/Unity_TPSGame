@@ -108,20 +108,11 @@ public class MeleeMonster : Monster, IMonster
 
     public override void Die()
     {
-        _isAlive = false;
-
-        StopAllCoroutines();
-        _poisonParicle.SetActive(false);
-
-        _animator.SetTrigger("Die");
-        
-        _navMeshAgent.isStopped = true;
-        _navMeshAgent.velocity = Vector3.zero;
+        base.Die();
 
         GetComponent<CapsuleCollider>().enabled = false;
         _attackCollider.enabled = false;
 
-        GameObject.Find("StageChanger").GetComponent<StageChanger>().RemoveMonsterCount();
     }
 
     public void PoisonEffect(float damage)
