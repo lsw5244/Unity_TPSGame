@@ -114,6 +114,22 @@ public class Monster : MonoBehaviour
         }        
     }
 
+    protected virtual IEnumerator StateCheck()
+    {
+        while (_isAlive == true)
+        {
+            yield return new WaitForSeconds(0.3f);
+
+            ChangeState();
+            SelectAction();
+
+            if (_animator.GetCurrentAnimatorStateInfo(0).IsName("hit") == true)
+            {
+                _navMeshAgent.velocity = Vector3.zero;
+            }
+        }
+    }
+
     protected IEnumerator Poison(float damage)
     {
         _poisonParicle.SetActive(true);
@@ -157,5 +173,5 @@ public class Monster : MonoBehaviour
 
         _currentAttentionMode = false;
         traceDistance /= 2f;
-    }
+    }   
 }

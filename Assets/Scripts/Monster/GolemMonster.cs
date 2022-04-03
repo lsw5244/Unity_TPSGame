@@ -135,7 +135,7 @@ public class GolemMonster : Monster, IMonster
         }
     }
 
-    IEnumerator StateCheck()
+    protected override IEnumerator StateCheck()
     {
         while (_isAlive == true)
         {

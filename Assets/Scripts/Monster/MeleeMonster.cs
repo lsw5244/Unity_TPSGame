@@ -22,27 +22,6 @@ public class MeleeMonster : Monster, IMonster
         StartCoroutine(StateCheck());
     }
 
-    void Update()
-    {
-
-    }
-
-    IEnumerator StateCheck()
-    {
-        while(_isAlive == true)
-        {
-            ChangeState();
-            SelectAction();
-
-            if (_animator.GetCurrentAnimatorStateInfo(0).IsName("hit") == true)
-            {
-                _navMeshAgent.velocity = Vector3.zero;
-            }
-
-            yield return new WaitForSeconds(0.3f);
-        }
-    }
-
     public void GetDamage(float damage)
     {
         if (_isAlive == false)
