@@ -28,8 +28,8 @@ public class Monster : MonoBehaviour
 
     protected bool _isAlive = true;
 
-    protected bool _attentionModeTrigger = false;
-    protected bool _continueAttentionMode = false;
+    protected bool _currentAttentionMode = false;
+    protected bool _attentionModeContinueTrigger = false;
 
     protected Transform _playerTransform;
     protected Animator _animator;
@@ -148,14 +148,14 @@ public class Monster : MonoBehaviour
     {
         traceDistance *= 2f;
 
-        while (_continueAttentionMode == true)
+        while (_attentionModeContinueTrigger == true)
         {
-            _continueAttentionMode = false;
+            _attentionModeContinueTrigger = false;
 
             yield return new WaitForSeconds(5f);
         }
 
-        _attentionModeTrigger = false;
+        _currentAttentionMode = false;
         traceDistance /= 2f;
     }
 }

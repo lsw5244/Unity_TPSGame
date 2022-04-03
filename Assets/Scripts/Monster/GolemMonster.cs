@@ -241,11 +241,11 @@ public class GolemMonster : Monster, IMonster
 
     public void StartAttentionMode()
     {
-        _continueAttentionMode = true;
+        _attentionModeContinueTrigger = true;
 
-        if (_attentionModeTrigger == false)
+        if (_currentAttentionMode == false)
         {
-            _attentionModeTrigger = true;
+            _currentAttentionMode = true;
             StartCoroutine(AttentionMode());
         }
     }
