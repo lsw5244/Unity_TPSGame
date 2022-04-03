@@ -79,4 +79,38 @@ public class Monster : MonoBehaviour
 
         GameObject.Find("StageChanger").GetComponent<StageChanger>().RemoveMonsterCount();
     }
+
+    public virtual void ChangeState()
+    {
+        float distance = Vector3.Distance(transform.position, _playerTransform.position);
+
+        if (distance < attackDistance)
+        {
+            _currentState = State.Attack;
+        }
+        else if (distance < traceDistance)
+        {
+            _currentState = State.Trace;
+        }
+        else
+        {
+            _currentState = State.Idle;
+        }
+    }
+
+    public virtual void SelectAction()
+    {
+        switch (_currentState)
+        {
+            case State.Attack:
+                Attack();
+                break;
+            case State.Trace:
+                Trace();
+                break;
+            case State.Idle:
+                Idle();
+                break;
+        }        
+    }
 }

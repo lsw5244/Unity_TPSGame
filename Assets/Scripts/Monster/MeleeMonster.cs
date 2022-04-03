@@ -31,33 +31,8 @@ public class MeleeMonster : Monster, IMonster
     {
         while(_isAlive == true)
         {
-            float distance = Vector3.Distance(transform.position, _playerTransform.position);
-
-            if (distance < attackDistance)
-            {
-                _currentState = State.Attack;
-            }
-            else if (distance < traceDistance)
-            {
-                _currentState = State.Trace;
-            }
-            else
-            {
-                _currentState = State.Idle;
-            }
-
-            switch (_currentState)
-            {
-                case State.Attack:
-                    Attack();
-                    break;
-                case State.Trace:
-                    Trace();
-                    break;
-                case State.Idle:
-                    Idle();
-                    break;
-            }
+            ChangeState();
+            SelectAction();
 
             if (_animator.GetCurrentAnimatorStateInfo(0).IsName("hit") == true)
             {

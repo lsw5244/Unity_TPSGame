@@ -157,25 +157,7 @@ public class GolemMonster : Monster, IMonster
         }
     }
 
-    void ChangeState()
-    {
-        float distance = Vector3.Distance(transform.position, _playerTransform.position);
-
-        if (distance < attackDistance)
-        {
-            _currentState = State.Attack;
-        }
-        else if (distance < traceDistance)
-        {
-            _currentState = State.Trace;
-        }
-        else
-        {
-            _currentState = State.Idle;
-        }
-    }
-
-    void SelectAction()
+    public override void SelectAction()
     {
         if (_runningDashAttack == false)
         {
