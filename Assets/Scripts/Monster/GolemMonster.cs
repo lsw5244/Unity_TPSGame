@@ -194,18 +194,6 @@ public class GolemMonster : Monster, IMonster
         }
     }
 
-    public override void Attack()
-    {
-        // 애니메이션 변경
-        _animator.SetBool("Attack", true);
-
-        transform.LookAt(_playerTransform.position);
-
-        // 추적 중지
-        _navMeshAgent.isStopped = true;
-        _navMeshAgent.velocity = Vector3.zero;
-    }
-
     public void StartAttack()
     {
         _attackCollider.enabled = true;
