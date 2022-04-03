@@ -73,8 +73,8 @@ public class Monster : MonoBehaviour
 
         _animator.SetTrigger("Die");
 
-        _navMeshAgent.isStopped = true;
-        _navMeshAgent.velocity = Vector3.zero;
+        //_navMeshAgent.isStopped = true;
+        //_navMeshAgent.velocity = Vector3.zero;
         _navMeshAgent.enabled = false;
 
         GameObject.Find("StageChanger").GetComponent<StageChanger>().RemoveMonsterCount();
@@ -112,5 +112,35 @@ public class Monster : MonoBehaviour
                 Idle();
                 break;
         }        
+    }
+
+    protected virtual IEnumerator Poison(float damage)
+    {
+        _poisonParicle.SetActive(true);
+        _isPoisonState = true;
+
+        while (poisonDamageCount > 0)
+        {
+            if( _isAlive == false )
+            {
+                break;
+            }
+
+            currentHp -= damage;
+            UIManager.Instance.UpdateMonsterHpbar(currentHp / _maxHP, gameObject.name);
+
+            if (currentHp <= 0f && _isAlive == true)
+            {
+                Die();
+                break;
+            }
+
+            yield return new WaitForSeconds(poisonDamageDelay);     // 0.5초에 한 번씩 실행되도록
+
+            poisonDamageCount--;
+        }
+
+        _isPoisonState = false;
+        _poisonParicle.SetActive(false);
     }
 }

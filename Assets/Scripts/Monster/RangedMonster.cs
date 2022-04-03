@@ -84,31 +84,6 @@ public class RangedMonster : Monster, IMonster
         }
     }
 
-    IEnumerator Poison(float damage)
-    {
-        _poisonParicle.SetActive(true);
-        _isPoisonState = true;
-
-        while (poisonDamageCount > 0)
-        {
-            currentHp -= damage;
-            UIManager.Instance.UpdateMonsterHpbar(currentHp / _maxHP, gameObject.name);
-
-            if (currentHp <= 0f && _isAlive == true)
-            {               
-                Die();
-                break;
-            }
-
-            yield return new WaitForSeconds(poisonDamageDelay);     // 0.5초에 한 번씩 실행되도록
-
-            poisonDamageCount--;
-        }
-
-        _isPoisonState = false;
-        _poisonParicle.SetActive(false);
-    }
-
     public override void Die()
     {
         base.Die();
@@ -117,7 +92,6 @@ public class RangedMonster : Monster, IMonster
         _rightHandFireParticle.SetActive(false);
 
         GetComponent<CapsuleCollider>().enabled = false;
-
     }
 
     public void GetDamage(float damage)

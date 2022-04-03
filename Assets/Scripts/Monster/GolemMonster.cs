@@ -239,32 +239,7 @@ public class GolemMonster : Monster, IMonster
             StartCoroutine(Poison(damage));
         }
     }
-
-    IEnumerator Poison(float damage)
-    {
-        _poisonParicle.SetActive(true);
-        _isPoisonState = true;
-
-        while (poisonDamageCount > 0)
-        {
-            currentHp -= damage;
-            UIManager.Instance.UpdateMonsterHpbar(currentHp / _maxHP, gameObject.name);
-
-            if (currentHp <= 0f && _isAlive == true)
-            {
-                Die();
-                break;
-            }
-
-            yield return new WaitForSeconds(poisonDamageDelay);     // 0.5초에 한 번씩 실행되도록
-
-            poisonDamageCount--;
-        }
-
-        _isPoisonState = false;
-        _poisonParicle.SetActive(false);
-    }
-
+    
     public override void Trace()
     {
         base.Trace();
