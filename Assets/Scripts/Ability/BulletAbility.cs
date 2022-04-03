@@ -72,7 +72,7 @@ public class BulletAbility : MonoBehaviour
 
     void PoisonBullet(GameObject target)
     {
-        target.GetComponent<IMonster>().PoisonEffect(poisonDamage);
+        target.GetComponent<IMonster>().StartPoisonEffect(poisonDamage);
     }
 
     public void AddPoisonBullet()

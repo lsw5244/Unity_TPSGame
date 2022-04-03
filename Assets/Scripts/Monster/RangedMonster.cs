@@ -58,7 +58,7 @@ public class RangedMonster : Monster, IMonster
         StartCoroutine(StateCheck());
     }
 
-    public void PoisonEffect(float damage)
+    public void StartPoisonEffect(float damage)
     {
         poisonDamageCount = 5;
 

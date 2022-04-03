@@ -54,7 +54,7 @@ public class MeleeMonster : Monster, IMonster
 
     }
 
-    public void PoisonEffect(float damage)
+    public void StartPoisonEffect(float damage)
     {
         poisonDamageCount = 5;
 
