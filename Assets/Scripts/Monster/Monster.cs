@@ -143,4 +143,19 @@ public class Monster : MonoBehaviour
         _isPoisonState = false;
         _poisonParicle.SetActive(false);
     }
+
+    protected virtual IEnumerator AttentionMode()
+    {
+        traceDistance *= 2f;
+
+        while (_continueAttentionMode == true)
+        {
+            _continueAttentionMode = false;
+
+            yield return new WaitForSeconds(5f);
+        }
+
+        _attentionModeTrigger = false;
+        traceDistance /= 2f;
+    }
 }

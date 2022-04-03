@@ -66,21 +66,6 @@ public class MeleeMonster : Monster, IMonster
         }
     }
 
-    IEnumerator AttentionMode()
-    {
-        traceDistance *= 2f;
-
-        while(_continueAttentionMode == true)
-        {
-            _continueAttentionMode = false;
-
-            yield return new WaitForSeconds(5f);
-        }
-
-        _attentionModeTrigger = false;
-        traceDistance /= 2f;
-    }
-
     public override void Die()
     {
         base.Die();

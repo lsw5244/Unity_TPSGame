@@ -204,21 +204,6 @@ public class GolemMonster : Monster, IMonster
         }
     }
 
-    IEnumerator AttentionMode()
-    {
-        traceDistance *= 2f;
-
-        while (_continueAttentionMode == true)
-        {
-            _continueAttentionMode = false;
-
-            yield return new WaitForSeconds(5f);
-        }
-
-        _attentionModeTrigger = false;
-        traceDistance /= 2f;
-    }
-
     public void PoisonEffect(float damage)
     {
         poisonDamageCount = 5;
