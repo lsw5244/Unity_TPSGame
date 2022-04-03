@@ -114,7 +114,7 @@ public class Monster : MonoBehaviour
         }        
     }
 
-    protected virtual IEnumerator Poison(float damage)
+    protected IEnumerator Poison(float damage)
     {
         _poisonParicle.SetActive(true);
         _isPoisonState = true;
@@ -144,7 +144,7 @@ public class Monster : MonoBehaviour
         _poisonParicle.SetActive(false);
     }
 
-    protected virtual IEnumerator AttentionMode()
+    protected IEnumerator AttentionMode()
     {
         traceDistance *= 2f;
 
