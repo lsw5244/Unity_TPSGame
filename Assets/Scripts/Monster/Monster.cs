@@ -80,7 +80,7 @@ public class Monster : MonoBehaviour
         GameObject.Find("StageChanger").GetComponent<StageChanger>().RemoveMonsterCount();
     }
 
-    public virtual void ChangeState()
+    protected virtual void ChangeState()
     {
         float distance = Vector3.Distance(transform.position, _playerTransform.position);
 
@@ -98,7 +98,7 @@ public class Monster : MonoBehaviour
         }
     }
 
-    public virtual void SelectAction()
+    protected virtual void SelectAction()
     {
         switch (_currentState)
         {

@@ -36,6 +36,7 @@ public class PlayerFire : MonoBehaviour
             {
                 RaycastHit hit;
 
+                // Ray에 hit한 것이 없을 때 발사 할 방향 설정
                 Vector3 hitPosition = _aimModCameraTransfrom.position + _aimModCameraTransfrom.forward * _fireRayDistance;
                 Vector3 hitDirection = (hitPosition - _fireTransform.position).normalized;
 
