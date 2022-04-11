@@ -83,7 +83,7 @@ public class GolemMonster : Monster, IMonster
         {
             yield return new WaitForSeconds(10f);
 
-            if (_animator.GetCurrentAnimatorStateInfo(0).IsName("run") == true)
+            if (_currentState == State.Trace)
             {
                 if ( Random.Range(0.0f, 2.0f) > 1f )
                 {
