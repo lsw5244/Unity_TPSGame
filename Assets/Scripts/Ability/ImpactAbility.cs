@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class ImpactAbility : MonoBehaviour
 {
-    public static ImpactAbility _instance;
-    public static ImpactAbility Instance { get { return _instance; } }
+    public static ImpactAbility Instance;
+    //public static ImpactAbility Instance { get { return _instance; } }
 
     public delegate void ImpactAbilityDelegate(GameObject bullet);
     public ImpactAbilityDelegate impactAbility;
@@ -18,7 +18,7 @@ public class ImpactAbility : MonoBehaviour
     {
         if (Instance == null)
         {
-            _instance = this;
+            Instance = this;
             DontDestroyOnLoad(this.gameObject);
         }
         else

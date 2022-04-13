@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class BulletAbility : MonoBehaviour
 {
-    public static BulletAbility _instance;
-    public static BulletAbility Instance { get { return _instance; } }
+    public static BulletAbility Instance;
+    //public static BulletAbility Instance { get { return _instance; } }
 
     public delegate void BulletAbilityDeleage(GameObject target);
     public BulletAbilityDeleage bulletAbility;
@@ -14,10 +14,10 @@ public class BulletAbility : MonoBehaviour
     public float poisonDamage = 20f;
 
     private void Awake()
-    {
+    {        
         if (Instance == null)
         {
-            _instance = this;
+            Instance = this;
             bulletAbility -= HitTarget;
             bulletAbility += HitTarget;
             DontDestroyOnLoad(this.gameObject);

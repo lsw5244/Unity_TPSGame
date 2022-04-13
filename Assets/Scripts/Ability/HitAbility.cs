@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class HitAbility : MonoBehaviour
 {
-    public static HitAbility _instance;
-    public static HitAbility Instance { get { return _instance; } }
+    public static HitAbility Instance;
+    //public static HitAbility Instance { get { return _instance; } }
 
     public delegate void HitAbilityDelegate(GameObject attacker);
     public HitAbilityDelegate hitAbility;
@@ -20,7 +20,7 @@ public class HitAbility : MonoBehaviour
     {
         if (Instance == null)
         {
-            _instance = this;
+            Instance = this;
             DontDestroyOnLoad(this.gameObject);
         }
         else
@@ -29,6 +29,7 @@ public class HitAbility : MonoBehaviour
             Destroy(gameObject);
         }
     }
+
     public void ClearAbility()
     {
         hitAbility = null;

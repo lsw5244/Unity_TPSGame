@@ -119,18 +119,20 @@ public class GolemMonster : Monster, IMonster
     {
         Vector3 playerDistance = _playerTransform.position - transform.position;
                 
-        // 앞에 있는지 확인
+        // 플레이어가 뒤에 있으면 회전하지 않음
         if(Vector3.Dot(transform.forward, playerDistance) < 0f)
         {
             return;
         }
-        // 좌, 우 어느쪽에 있는지 확인
-        if(Vector3.Cross(transform.forward, playerDistance).y < 0f) // 왼쪽에 있을 때
+        // 외적을 통해 좌, 우 판별
+        if(Vector3.Cross(transform.forward, playerDistance).y < 0f)
         {
+            // 플레이어가 왼쪽에 있을 때
             transform.Rotate(0f, -_dashAttackTurnSpeed, 0f);
         }
-        else  // 오른쪽에 있을 때
+        else  
         {
+            // 플레이어가 오른쪽에 있을 때
             transform.Rotate(0f, _dashAttackTurnSpeed, 0f);
         }
     }
