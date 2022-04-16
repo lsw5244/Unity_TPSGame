@@ -11,6 +11,7 @@ public class PlayerFire : MonoBehaviour
 
     [SerializeField]
     private BulletManager _bulletManager;
+    [SerializeField]
     private AudioSource _audioSource;
 
     [SerializeField]
@@ -22,16 +23,20 @@ public class PlayerFire : MonoBehaviour
     
     private bool _canFire;
 
+    [SerializeField]
+    private AudioClip _shootAudio;
+
     void Start()
     {
         _canFire = true;
-        _audioSource = GetComponent<AudioSource>();
+        _audioSource.clip = _shootAudio;
     }
 
     void Update()
     {
         if(Input.GetMouseButton(0) && _canFire == true)
         {
+            _audioSource.clip = _shootAudio;
             _audioSource.Play();
             StartCoroutine("StartDelay");
 

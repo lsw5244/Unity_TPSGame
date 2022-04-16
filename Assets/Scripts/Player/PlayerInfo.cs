@@ -12,9 +12,17 @@ public class PlayerInfo : MonoBehaviour, IPlayer
     private float currentHp;
 
     private bool _isAlive = true;
+
+    private AudioSource _audioSource;
+    [SerializeField]
+    private AudioClip _getDamageAudio;
+    [SerializeField]
+    private AudioClip _dieAudio;
+
     void Start()
     {        
         currentHp = PlayerPrefs.GetFloat("PlayerHp");
+        _audioSource = GetComponent<AudioSource>();
         UIManager.Instance.UpdateHpbar(currentHp / maxHp);
     }
 
@@ -29,6 +37,8 @@ public class PlayerInfo : MonoBehaviour, IPlayer
 
     public void Die()
     {
+
+
         GameObject.Find("StageChanger").GetComponent<StageChanger>().PlayerDie();
 
         GetComponent<PlayerAnimation>().PlayerDie();
@@ -39,6 +49,9 @@ public class PlayerInfo : MonoBehaviour, IPlayer
         GetComponent<PlayerRotate>().enabled = false;
         GetComponent<PlayerFire>().enabled = false;
         _isAlive = false;
+
+        _audioSource.clip = _dieAudio;
+        _audioSource.Play();
     }
 
     public void GetDamage(float damage, GameObject attacker)
@@ -59,6 +72,9 @@ public class PlayerInfo : MonoBehaviour, IPlayer
         if (currentHp <= 0f)
         {
             Die();
+            return;
         }
+        _audioSource.clip = _getDamageAudio;
+        _audioSource.Play();
     }
 }
