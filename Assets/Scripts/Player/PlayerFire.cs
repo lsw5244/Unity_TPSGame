@@ -11,6 +11,7 @@ public class PlayerFire : MonoBehaviour
 
     [SerializeField]
     private BulletManager _bulletManager;
+    private AudioSource _audioSource;
 
     [SerializeField]
     private float _firePower;
@@ -24,12 +25,14 @@ public class PlayerFire : MonoBehaviour
     void Start()
     {
         _canFire = true;
+        _audioSource = GetComponent<AudioSource>();
     }
 
     void Update()
     {
         if(Input.GetMouseButton(0) && _canFire == true)
         {
+            _audioSource.Play();
             StartCoroutine("StartDelay");
 
             if(Input.GetMouseButton(1)) // 조준 모드일 때
