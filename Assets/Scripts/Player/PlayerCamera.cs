@@ -44,7 +44,7 @@ public class PlayerCamera : MonoBehaviour
             //_aimModCameraTransfrom.eulerAngles = new Vector3(temp, _aimModCameraTransfrom.eulerAngles.y, _aimModCameraTransfrom.eulerAngles.z);
             
             // 카메라 이동
-            _cameraTransform.position = Vector3.Lerp(_cameraTransform.position, _aimModCameraTransfrom.position, 0.02f);
+            _cameraTransform.position = Vector3.Lerp(_cameraTransform.position, _aimModCameraTransfrom.position, 0.3f);
             _cameraTransform.rotation = _aimModCameraTransfrom.rotation;//Quaternion.Lerp(_cameraTransform.rotation, _aimModCameraTransfrom.rotation, 0.02f);
 
             _crosshairImage.gameObject.SetActive(true);
