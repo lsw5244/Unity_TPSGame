@@ -14832,6 +14832,10 @@ PrefabInstance:
       propertyPath: _crosshairImage
       value: 
       objectReference: {fileID: 1108033056}
+    - target: {fileID: 7899445820885188251, guid: 81b29a4bd1d04e64181aaa07b6be8f47, type: 3}
+      propertyPath: _cameraMoveSpeed
+      value: 80
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 81b29a4bd1d04e64181aaa07b6be8f47, type: 3}
 --- !u!1001 &1038763965

@@ -35,8 +35,9 @@ public class PlayerCamera : MonoBehaviour
         {
             // 마우스 입력을 토대로 입력 값 저장
             _currentVerticalViewAngle += Input.GetAxis("Mouse Y") * Time.deltaTime * -_cameraMoveSpeed * 2f;
+            // 각도 최대, 최소값 제한
             _currentVerticalViewAngle = Mathf.Clamp(_currentVerticalViewAngle, -verticalViewAngle, verticalViewAngle);
-            // 입력값을 토대로 바라볼 각도 결정 
+            // 입력값을 토대로 바라볼 각도 결정 (X값만 변경하기)
             _aimModAngle = _aimModCameraTransfrom.eulerAngles;
             _aimModAngle.x = _currentVerticalViewAngle;
             _aimModCameraTransfrom.eulerAngles = _aimModAngle;
@@ -44,20 +45,20 @@ public class PlayerCamera : MonoBehaviour
             
             // 카메라 이동
             _cameraTransform.position = Vector3.Lerp(_cameraTransform.position, _aimModCameraTransfrom.position, 0.02f);
-            _cameraTransform.rotation = Quaternion.Lerp(_cameraTransform.rotation, _aimModCameraTransfrom.rotation, 0.02f);
+            _cameraTransform.rotation = _aimModCameraTransfrom.rotation;//Quaternion.Lerp(_cameraTransform.rotation, _aimModCameraTransfrom.rotation, 0.02f);
 
             _crosshairImage.gameObject.SetActive(true);
         }
-        else if (Input.GetKey(KeyCode.LeftAlt))
-        {
-            _cameraTransform.position = _normalModCameraTransfrom.position;
-            // 카메라 피봇 회전
-            _cameraArmTransform.Rotate(0f
-                , Input.GetAxis("Mouse X") * _cameraMoveSpeed * Time.deltaTime
-                , 0f);
+        //else if (Input.GetKey(KeyCode.LeftAlt))
+        //{
+        //    _cameraTransform.position = _normalModCameraTransfrom.position;
+        //    // 카메라 피봇 회전
+        //    _cameraArmTransform.Rotate(0f
+        //        , Input.GetAxis("Mouse X") * _cameraMoveSpeed * Time.deltaTime
+        //        , 0f);
 
-            _cameraTransform.LookAt(_headTransfrom.position);
-        }
+        //    _cameraTransform.LookAt(_headTransfrom.position);
+        //}
         else if(Input.GetMouseButtonUp(1))
         {
             _crosshairImage.gameObject.SetActive(false);

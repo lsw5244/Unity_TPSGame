@@ -3262,7 +3262,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _cameraArmTransform: {fileID: 8572284484361173663}
-  _cameraMoveSpeed: 200
+  _cameraMoveSpeed: 80
   verticalViewAngle: 30
   _cameraTransform: {fileID: 8572284484929910416}
   _aimModCameraTransfrom: {fileID: 8572284485155543401}
